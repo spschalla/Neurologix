@@ -21,7 +21,7 @@ w = None;
 The sensor select screens for each of the two operation modes of the device. 
 '''
 EVDSensorSelectScreen = None;
-LumbarSensorSelect = None;
+LumbarSensorSelect = None;w
 
 ZeroingPrompt = None;
 
@@ -139,7 +139,7 @@ class LogScreen(QWidget):
         
         self.text_field = QPlainTextEdit(self)
         self.text_field.setMinimumSize (1024,600)
-        self.text_field.setStyleSheet("background-image: url(background.png); background-attachment: fixed")
+        self.text_field.setStyleSheet("background-image: url(gray-background.png); background-attachment: fixed")
 
         # Display label goes here 
         self.display_label = QLabel('Scroll through I/O Information');
@@ -168,51 +168,50 @@ class LogScreen(QWidget):
     def back(self):
         logScreen.hide();
 
-        
-
-
-
-
-
 
 class ClampDevice(QWidget):
     global clampScreen
     def __init__(self):
         super().__init__();
-        self.setFixedWidth(800);
+        self.setFixedWidth(1024);
         self.setFixedHeight(400);
         self.grid = QGridLayout();
 
+        for x in range(15):
+            for y in range(15):
+                tmp = QLabel('');
+                self.grid.addWidget(tmp, x,y)
+
         self.text_field = QPlainTextEdit(self)
         self.text_field.setMinimumSize (1024,600)
-        self.text_field.setStyleSheet("background-image: url(background.png); background-attachment: fixed")
+        self.text_field.setStyleSheet("background-image: url(gray-background.png); background-attachment: fixed")
 
         self.ClampQuestion = QLabel('Select Clamp Duration')
-        self.ClampQuestion.setFont(QFont('Arial',50));
+        self.ClampQuestion.setFont(QFont('Futura',50));
         self.ClampQuestion.setAlignment(Qt.AlignCenter);
         self.ClampQuestion.setStyleSheet('background: transparent; color: gold')
         self.grid.addWidget(self.ClampQuestion, 0,4,2,10)
 
         self.Clamp5 = QPushButton('5 \n Minutes');
-        self.Clamp5.setFont(QFont('Arial',28));
+        self.Clamp5.setFont(QFont('Futura',28));
         self.Clamp5.clicked.connect(self.ClampScreen5)
         self.Clamp5.setStyleSheet('background: transparent; color: gold')
         self.grid.addWidget(self.Clamp5, 6,0,3,3)
 
         self.Clamp10 = QPushButton('10\n Minutes')
-        self.Clamp10.setFont(QFont('Arial',28));
+        self.Clamp10.setFont(QFont('Futura',28));
         self.Clamp10.clicked.connect(self.ClampScreen10)
         self.Clamp10.setStyleSheet('background: transparent; color: gold')
         self.grid.addWidget(self.Clamp10, 6,7,3,3)
 
         self.ClampInfinity = QPushButton('Indefintely \n');
-        self.ClampInfinity.setFont(QFont('Arial',32));
+        self.ClampInfinity.setFont(QFont('Futura',32));
         self.ClampInfinity.clicked.connect(self.ClampScreen)
         self.ClampInfinity.setStyleSheet('background: transparent; color: gold')
         self.grid.addWidget(self.ClampInfinity,6,13,3,3)
 
         self.BackButton = QPushButton('Back \n');
-        self.BackButton.setFont(QFont('Arial', 30))
+        self.BackButton.setFont(QFont('Futura', 30))
         self.BackButton.clicked.connect(self.Back)
         self.BackButton.setStyleSheet('background: transparent; color: gold')
 
@@ -227,7 +226,7 @@ class ClampDevice(QWidget):
 
         self.ClampedLabel = QLabel('Device is Clamped');
         self.ClampedLabel.setStyleSheet('background: transparent; color: gold')
-        self.ClampedLabel.setFont(QFont('Arial',40));
+        self.ClampedLabel.setFont(QFont('Futura',40));
         self.ClampedLabel.setAlignment(Qt.AlignCenter)
         self.grid.addWidget(self.ClampedLabel, 0,6,3,3);
 
@@ -260,7 +259,7 @@ class ClampDevice(QWidget):
 
         self.ClampedLabel = QLabel('Device is Clamped');
         self.ClampedLabel.setStyleSheet('background: transparent; color:gold')
-        self.ClampedLabel.setFont(QFont('Arial',40));
+        self.ClampedLabel.setFont(QFont('Futura',40));
         self.ClampedLabel.setAlignment(Qt.AlignCenter)
         self.grid.addWidget(self.ClampedLabel, 0,6,3,3);
     
@@ -277,7 +276,7 @@ class ClampDevice(QWidget):
 
         self.ClampedLabel = QLabel('Device is Clamped');
         self.ClampedLabel.setStyleSheet('background: transparent; color: gold')
-        self.ClampedLabel.setFont(QFont('Arial',40));
+        self.ClampedLabel.setFont(QFont('Futura',40));
         self.ClampedLabel.setAlignment(Qt.AlignCenter)
         self.grid.addWidget(self.ClampedLabel, 0,6,3,3);
 
@@ -321,17 +320,22 @@ class ZeroDevice(QWidget):
     global zeroScreen;
     def __init__(self):
         super().__init__();
-        self.setFixedWidth(600);
-        self.setFixedHeight(300);
+        self.setFixedWidth(1024);
+        self.setFixedHeight(400);
         self.grid = QGridLayout();
+
+        for x in range(15):
+            for y in range(15):
+                tmp = QLabel('');
+                self.grid.addWidget(tmp, x,y)
 
         self.text_field = QPlainTextEdit(self)
         self.text_field.setMinimumSize (1024,600)
-        self.text_field.setStyleSheet("background-image: url(background.png); background-attachment: fixed")
+        self.text_field.setStyleSheet("background-image: url(gray-background.png); background-attachment: fixed")
 
 
         self.ZeroLabel = QLabel('Zero Transducer');
-        self.ZeroLabel.setFont(QFont('Arial',40));
+        self.ZeroLabel.setFont(QFont('Futura',60));
         self.ZeroLabel.setAlignment(Qt.AlignCenter)
         self.ZeroLabel.setStyleSheet('background: transparent; color: gold');
         self.grid.addWidget(self.ZeroLabel, 0,5,3,5);
@@ -339,20 +343,20 @@ class ZeroDevice(QWidget):
         reminder_text = '-Ensure Proper Positioning \n -Open Stopcocks \n -Press Zero When Ready'
         self.Reminders = QLabel(reminder_text);
         self.Reminders.setStyleSheet('background: transparent; color: gold')
-        self.Reminders.setFont(QFont('Arial',15));
+        self.Reminders.setFont(QFont('Futura',15));
         self.Reminders.setAlignment(Qt.AlignCenter);
         self.grid.addWidget(self.Reminders, 3,6,4,3)
 
         self.ZeroButton = QPushButton('Zero');
         self.ZeroButton.setStyleSheet('background: transparent; color: gold')
-        self.ZeroButton.setFont(QFont('Arial',39));
+        self.ZeroButton.setFont(QFont('Futura',40));
         self.ZeroButton.clicked.connect(self.AfterZero)
         self.grid.addWidget(self.ZeroButton, 9,2,4,4)
 
 
         self.BackButton = QPushButton('Back');
         self.BackButton.setStyleSheet('background: transparent; color: gold')
-        self.BackButton.setFont(QFont('Arial',39));
+        self.BackButton.setFont(QFont('Futura',40));
         self.BackButton.clicked.connect(self.Back);
         self.grid.addWidget(self.BackButton, 9,10,4,4);
         self.setLayout(self.grid)
@@ -362,7 +366,8 @@ class ZeroDevice(QWidget):
         #self.BackButton.setHidden(True);
 
         self.ZeroLabel = QLabel('Zeroing Sucessful');
-        self.ZeroLabel.setFont(QFont('Arial',25));
+        self.ZeroLabel.setStyleSheet('color:gold')
+        self.ZeroLabel.setFont(QFont('Futura',40));
         self.grid.addWidget(self.ZeroLabel, 5,6,3,5)
         #self.grid.removeWidget(self.BackButton)
         self.grid.addWidget(self.BackButton, 10,5,3,5)
@@ -373,18 +378,18 @@ class AlarmScreen(QWidget):
      global alarmTimer 
      def __init__(self):
         super().__init__();
-        self.setFixedWidth(600);
-        self.setFixedHeight(300);
+        self.setFixedWidth(1024);
+        self.setFixedHeight(400);
         self.grid = QGridLayout();
 
         self.text_field = QPlainTextEdit(self)
         self.text_field.setMinimumSize (1024,600)
-        self.text_field.setStyleSheet("background-image: url(background.png); background-attachment: fixed")
+        self.text_field.setStyleSheet("background-image: url(gray-background.png); background-attachment: fixed")
 
         # Now we add the appropriate labels
         self.silencedLabel = QLabel('Alarm Silenced');
         self.silencedLabel.setStyleSheet('background: transparent; color: gold')
-        self.silencedLabel.setFont(QFont('Arial',30));
+        self.silencedLabel.setFont(QFont('Futura',30));
         self.silencedLabel.setAlignment(Qt.AlignCenter)
         self.grid.addWidget(self.silencedLabel, 0,6,2,3)
 
@@ -412,12 +417,12 @@ class AlarmScreen(QWidget):
 
         self.AddDelayButton = QPushButton('+ ')
         self.AddDelayButton.setStyleSheet('background: transparent; color: gold')
-        self.AddDelayButton.setFont(QFont('Arial', 15))
+        self.AddDelayButton.setFont(QFont('Futura', 15))
         self.AddDelayButton.clicked.connect(self.upDelay);
         self.grid.addWidget(self.AddDelayButton, 10,4,3,3)
 
         self.backButton = QPushButton('Back');
-        self.backButton.setFont(QFont('Arial',15));
+        self.backButton.setFont(QFont('Futura',15));
         self.backButton.setStyleSheet('background: transparent; color: gold')
         self.backButton.clicked.connect(self.Back);
         self.grid.addWidget(self.backButton, 10,8,3,3);
@@ -453,7 +458,7 @@ class Operation(QWidget):
 
         self.text_field = QPlainTextEdit(self)
         self.text_field.setMinimumSize (1024,600)
-        self.text_field.setStyleSheet("background-image: url(background.png); background-attachment: fixed")
+        self.text_field.setStyleSheet("background-image: url(gray-background.png); background-attachment: fixed")
 
         
 
@@ -469,7 +474,7 @@ class Operation(QWidget):
         else:
             mode_label_text= 'Volume Controlled \n Pressure Limited'
         self.modeLabel = QLabel(mode_label_text)
-        self.modeLabel.setFont(QFont('Arial',18))
+        self.modeLabel.setFont(QFont('Futura',18))
         self.modeLabel.setAlignment(Qt.AlignCenter)
         self.grid.addWidget(self.modeLabel, 0,0,3,4)
         self.modeLabel.setStyleSheet('background: transparent; color: gold')
@@ -478,7 +483,7 @@ class Operation(QWidget):
         # Adding the appropriate units here 
         pressure_label_text = openPressure_str + " " + unitFlag;
         self.pressureLabel = QLabel(pressure_label_text)
-        self.pressureLabel.setFont(QFont('Arial',18))
+        self.pressureLabel.setFont(QFont('Futura',18))
         self.pressureLabel.setAlignment(Qt.AlignCenter)
         self.pressureLabel.setStyleSheet('background: transparent; color: gold')
         self.grid.addWidget(self.pressureLabel, 0,4,3,2)
@@ -486,13 +491,13 @@ class Operation(QWidget):
 
         if (controlFlag==1):
             self.closingDelay = QLabel('Closing Delay: \n' + str(closeDelay) + ' seconds');
-            self.closingDelay.setFont(QFont('Arial',18))
+            self.closingDelay.setFont(QFont('Futura',18))
             self.closingDelay.setAlignment(Qt.AlignCenter)
             self.closingDelay.setStyleSheet('background: transparent; color: gold')
             self.grid.addWidget(self.closingDelay, 0,6,3,4);
         else:
             self.volumeCollected = QLabel('Volume Collected: \n' + str(200) + ' mL');
-            self.volumeCollected.setFont(QFont('Arial',18))
+            self.volumeCollected.setFont(QFont('Futura',18))
             self.volumeCollected.setAlignment(Qt.AlignCenter)
             self.volumeCollected.setStyleSheet('background: transparent; color: gold')
             self.grid.addWidget(self.volumeCollected, 0,6,3,4);
@@ -504,7 +509,7 @@ class Operation(QWidget):
         else:
             tempVol = volumeamount
         self.volumeLimit = QLabel('Volume Limit: \n' + str(tempVol) + ' mL');
-        self.volumeLimit.setFont(QFont('Arial',18));
+        self.volumeLimit.setFont(QFont('Futura',18));
         self.volumeLimit.setAlignment(Qt.AlignCenter)
         self.volumeLimit.setStyleSheet('background: transparent; color: gold')
         self.grid.addWidget(self.volumeLimit, 0,10,3,3);
@@ -516,7 +521,7 @@ class Operation(QWidget):
             rate_text = 'Rate Limiting: \n Pressure'
         
         self.RateLimit = QLabel(rate_text)
-        self.RateLimit.setFont(QFont('Arial',18));
+        self.RateLimit.setFont(QFont('Futura',18));
         self.RateLimit.setAlignment(Qt.AlignCenter)
         self.RateLimit.setStyleSheet('background: transparent; color: gold')
         self.grid.addWidget(self.RateLimit, 0,13,3,2);
@@ -533,7 +538,7 @@ class Operation(QWidget):
             icp_target_text = 'Maximal Pressure: \n' + str(pressureAmount) + ' ' + unitFlag
 
         self.ICPTarget = QLabel(icp_target_text)
-        self.ICPTarget.setFont(QFont('Arial',20));
+        self.ICPTarget.setFont(QFont('Futura',20));
         self.ICPTarget.setAlignment(Qt.AlignCenter);
         self.ICPTarget.setStyleSheet('background: transparent; color: gold')
         self.grid.addWidget(self.ICPTarget, 3,13,2,2)
@@ -545,14 +550,14 @@ class Operation(QWidget):
         else:
             volume_target_text = 'Minimum Drainage Amount: \n ' + str(volumeAmount) + ' mL'
         self.VolumeTarget = QLabel(volume_target_text)
-        self.VolumeTarget.setFont(QFont('Arial', 20))
+        self.VolumeTarget.setFont(QFont('Futura', 20))
         self.VolumeTarget.setAlignment(Qt.AlignCenter);
         self.VolumeTarget.setStyleSheet('background: transparent; color: gold')
         self.grid.addWidget(self.VolumeTarget, 5,13,2,2)
 
         # Go/Stop Button
         self.RunPauseLabel = QLabel('')
-        self.RunPauseLabel.setFont(QFont('Arial', 20))
+        self.RunPauseLabel.setFont(QFont('Futura', 20))
         self.RunPauseLabel.setAlignment(Qt.AlignCenter);
         self.RunPauseLabel.setStyleSheet('background: transparent; color: gold')
         self.grid.addWidget(self.RunPauseLabel, 7,13,6,2);
@@ -562,35 +567,35 @@ class Operation(QWidget):
         self.silenceAlarm = QPushButton('Silence \n Alarm')
         self.silenceAlarm.setStyleSheet('background: transparent; color: gold')
         self.silenceAlarm.clicked.connect(self.Alarm)
-        self.silenceAlarm.setFont(QFont('Arial',20))
+        self.silenceAlarm.setFont(QFont('Futura',20))
         self.grid.addWidget(self.silenceAlarm,13,13,2,2);
 
        
         self.ZeroButton = QPushButton('Zero \n')
-        self.ZeroButton.setFont(QFont('Arial',20))
+        self.ZeroButton.setFont(QFont('Futura',20))
         self.ZeroButton.setStyleSheet('background: transparent; color: gold')
         self.ZeroButton.clicked.connect(self.ZeroDevice);
         self.grid.addWidget(self.ZeroButton,13,10,2,3);
 
         self.ClampButton = QPushButton('Clamp \n Device')
-        self.ClampButton.setFont(QFont('Arial', 20));
+        self.ClampButton.setFont(QFont('Futura', 20));
         self.ClampButton.setStyleSheet('background: transparent; color: gold')
         self.ClampButton.clicked.connect(self.Clamp);
         self.grid.addWidget(self.ClampButton, 13,6,2,4)
 
         self.ProgramButton = QPushButton('Change \nProgram');
-        self.ProgramButton.setFont(QFont('Arial',20));
+        self.ProgramButton.setFont(QFont('Futura',20));
         self.ProgramButton.setStyleSheet('background: transparent; color: gold')
         self.ProgramButton.clicked.connect(self.changeProgram);
         self.grid.addWidget(self.ProgramButton, 13,0,2,4);
 
         self.log = QPushButton('I/O \n Information')
-        self.log.setFont(QFont('Arial', 20));
+        self.log.setFont(QFont('F4utura', 20));
         self.log.setStyleSheet('background: transparent; color: gold')
         self.log.clicked.connect(self.toIO)
         self.grid.addWidget(self.log, 13,4,2,2)
 
-        self.movie = QMovie('check.gif');
+        self.movie = QMovie('final_running.gif');
         self.RunPauseLabel.setMovie(self.movie);
         self.RunPauseLabel.setStyleSheet('background: transparent; color: gold')
         self.startMovie();
@@ -693,27 +698,24 @@ class Summary(QWidget):
 
         self.text_field = QPlainTextEdit(self)
         self.text_field.setMinimumSize (1024,600)
-        self.text_field.setStyleSheet("background-image: url(background.png); background-attachment: fixed")
+        self.text_field.setStyleSheet("background-image: url(gray-background.png); background-attachment: fixed")
         
         self.grid = QGridLayout()
+        for x in range(15):
+            for y in range(15):
+                tmp = QLabel('')
+                tmp.setStyleSheet('background: transparent')
+                self.grid.addWidget(tmp, x,y)
 
         
         self.setLayout(self.grid)
 
 
-        for x in range(0,15):
-            for y in range(0,15):
-                tmp = QLabel('')
-                tmp.setStyleSheet('background: transparent; color: gold')
-
-                self.grid.addWidget(tmp, x, y)
-
-
         self.setUp = QLabel("Summary Screen");
-        self.setUp.setFont(QFont("Arial",56));
+        self.setUp.setFont(QFont("Futura",56));
         self.setUp.setAlignment(Qt.AlignCenter);
         self.setUp.setStyleSheet('background: transparent; color: gold')
-        self.grid.addWidget(self.setUp, 0,6,4,3)
+        self.grid.addWidget(self.setUp, 0,3,2,15)
 
         # Device Type
         label = ''
@@ -725,10 +727,10 @@ class Summary(QWidget):
 
         # Device Type
         self.DeviceType = QLabel(label)
-        self.DeviceType.setFont(QFont('Arial', 30))
+        self.DeviceType.setFont(QFont('Futura', 30))
         self.DeviceType.setAlignment(Qt.AlignCenter)
         self.DeviceType.setStyleSheet('background: transparent; color: gold')
-        self.grid.addWidget(self.DeviceType, 4, 6, 2, 3)
+        self.grid.addWidget(self.DeviceType, 3, 3, 2, 15)
 
 
         drive_by = None;
@@ -743,74 +745,56 @@ class Summary(QWidget):
         else:
             drive_by = "Volume Controlled-Pressure Limited";
             p = pressureString + ' ' + unitFlag
-            v = str(volumeAmount) + ' mL'
+            v = str(volumeAmount)
         
         
-        bolded_font = QFont('Arial', 30);
+        bolded_font = QFont('Futura', 30);
         bolded_font.setBold(True);
         
         if (controlFlag==1):
             # Sets the label
-            self.closeDelay = QLabel(' Closing Delay is: ');
-            self.closeDelay.setFont(QFont('Arial', 30));
+            closing_label = 'Closing Delay is: ' + str(delay);
+            self.closeDelay = QLabel(closing_label);
+            self.closeDelay.setFont(QFont('Futura', 30));
             self.closeDelay.setStyleSheet('background: transparent; color: gold')
-            self.grid.addWidget(self.closeDelay,11,6,1,1)
+            self.grid.addWidget(self.closeDelay,11,3,2,15)
 
-            # Sets the bolded value 
-            self.Delay = QLabel(delay);
-            self.Delay.setFont(bolded_font)
-            self.Delay.setStyleSheet('background: transparent; color: gold')
-            self.grid.addWidget(self.Delay, 11,7,1,1)
         # How it is driven
         self.driveLabel = QLabel(drive_by);
-        self.driveLabel.setFont(QFont("Arial",30))
+        self.driveLabel.setFont(QFont("Futura",25))
         self.driveLabel.setAlignment(Qt.AlignCenter)
+        self.driveLabel.setWordWrap(True)
         self.driveLabel.setStyleSheet('background: transparent; color: gold')
-        self.grid.addWidget(self.driveLabel, 5, 6, 2, 3);
+        self.grid.addWidget(self.driveLabel, 5, 3, 2, 15);
 
         # Opening Pressure
 
         # Sets the label
-        self.openingPressure = QLabel("Opening pressure:");
-        self.openingPressure.setAlignment(Qt.AlignCenter)
-        self.openingPressure.setFont(QFont("Arial", 30))
-        self.openingPressure.setStyleSheet('background: transparent; color: gold')
-        self.grid.addWidget(self.openingPressure, 7, 6,1,1);
 
-        # Sets how it is driven
-        self.PressureValue = QLabel(p)
-        self.PressureValue.setFont(bolded_font);
-        self.PressureValue.setStyleSheet('background: transparent; color: gold')
-        self.PressureValue.setAlignment(Qt.AlignCenter)
-        self.grid.addWidget(self.PressureValue, 7,8,1,1 )
+        pressure_label = "Opening Pressure: " + str(p);
+        self.openingPressure = QLabel(pressure_label);
+        self.openingPressure.setAlignment(Qt.AlignCenter)
+        self.openingPressure.setFont(QFont("Futura", 30))
+        self.openingPressure.setStyleSheet('background: transparent; color: gold')
+        self.grid.addWidget(self.openingPressure, 7, 3,2,15);
+
 
         # volume limit
-
-        self.volumeLimit = QLabel("Volume Limit per hour:");
+        volume_label = "Volume Limit: " + str(v) + 'mL/hr'
+        self.volumeLimit = QLabel(volume_label);
         self.volumeLimit.setStyleSheet('background: transparent; color: gold')
         self.volumeLimit.setAlignment(Qt.AlignCenter)
-        self.volumeLimit.setFont(QFont("Arial", 30))
-        self.VolumeAmount = QLabel(v);
-        self.VolumeAmount.setStyleSheet('background: transparent; color: gold')
-        self.VolumeAmount.setAlignment(Qt.AlignCenter)
-        self.VolumeAmount.setFont(bolded_font)
+        self.volumeLimit.setFont(QFont("Futura", 30))
+        self.grid.addWidget(self.volumeLimit, 9,3,2,15);
 
-        if controlFlag==0:
-            self.grid.addWidget(self.volumeLimit, 10, 6,1,1)
-            self.grid.addWidget(self.VolumeAmount,10,8,1,1 )
-
-        else:
-            self.grid.addWidget(self.volumeLimit, 9, 5,1,1)
-
-            self.grid.addWidget(self.VolumeAmount,9,8,1,1 )
-
+        
 
 
         self.Next = QPushButton('Next \n');
         self.Next.setStyleSheet('background: transparent; color: gold')
-        self.Next.setFont(QFont('Arial',30))
+        self.Next.setFont(QFont('Futura',30))
         self.Next.clicked.connect(self.toOperation)
-        self.grid.addWidget(self.Next, 16,6,2,3)
+        self.grid.addWidget(self.Next, 14,3,2,15)
 
 
         #self.setLayout(self.grid)
@@ -831,228 +815,214 @@ class ClosingDelay(QWidget):
 
         self.grid = QGridLayout()
 
+        for x in range(15):
+            for y in range(15):
+                tmp = QLabel('')
+                tmp.setStyleSheet('background: transparent')
+                self.grid.addWidget(tmp, x,y)
+
         self.text_field = QPlainTextEdit(self)
         self.text_field.setMinimumSize (1024,600)
-        self.text_field.setStyleSheet("background-image: url(background.png); background-attachment: fixed")
+        self.text_field.setStyleSheet("background-image: url(gray-background.png); background-attachment: fixed")
 
         # Welcome Label
         self.welcomeLabel = QLabel("What is the closing delay? \n");
-        self.welcomeLabel.setFont(QFont("Arial",50 ));
+        self.welcomeLabel.setWordWrap(True);
+        self.welcomeLabel.setFont(QFont("Futura",60 ));
         self.welcomeLabel.setAlignment(Qt.AlignCenter)
         self.welcomeLabel.setStyleSheet('background: transparent; color: gold')
 
         self.backButton = QPushButton('Back \n')
-        self.backButton.setFont(QFont("Arial", 30));
+        self.backButton.setFont(QFont("Futura", 38));
         self.backButton.clicked.connect(self.back);
         self.backButton.setStyleSheet('background: transparent; color: gold')
 
         # Display Label
-        self.display_label = QLabel("" + "\n");
-        self.display_label.setFont(QFont("Arial", 50));
-        self.display_label.setAlignment(Qt.AlignCenter)
+        self.display_label = QPushButton("" + "\n");
+        self.display_label.setFont(QFont("Futura", 60));
+        #self.display_label.setAlignment(Qt.AlignCenter)
         self.display_label.setStyleSheet('background: transparent; color: gold')
 
-  # Button setup happens here
-        self.button0 = QPushButton("\n");
-        self.button0.setStyleSheet('background: transparent; color: gold')
-        self.button0.setFont(QFont("Arial", 30));
+        # Button setup happens here
+        self.button0 = QPushButton("0\n");
+        self.button0.setFont(QFont("Futura", 38));
         self.button0.clicked.connect(self.press0);
-        self.grid.addWidget(self.button0, 11, 4, 2, 2);
+        self.button0.setStyleSheet('text-align:right')
+        self.button0.setStyleSheet('background: #d8d8d8; color: black;padding: 20px;')
+
+
 
         # Button setup happens here
-        self.button1 = QPushButton("\n");
-        self.button1.setStyleSheet('background: transparent; color: gold')
-        self.button1.setFont(QFont("Arial", 30));
+        self.button1 = QPushButton("1\n");
+        self.button1.setFont(QFont("Futura", 38));
         self.button1.clicked.connect(self.press1);
 
-        self.button2 = QPushButton("\n");
-        self.button2.setStyleSheet('background: transparent; color: gold')
-        self.button2.setFont(QFont("Arial", 30));
+        self.button1.setStyleSheet('background: #d8d8d8; color: black;padding: 20px;')
+
+
+        self.button2 = QPushButton("2\n");
+        self.button2.setFont(QFont("Futura", 38));
         self.button2.clicked.connect(self.press2)
+        self.button2.setStyleSheet('background: #d8d8d8; color: black;padding: 20px;')
 
-        self.button3 = QPushButton("\n");
-        self.button3.setStyleSheet('background: transparent; color: gold')
-        self.button3.setFont(QFont("Arial", 30))
+        self.button3 = QPushButton("3\n");
+        self.button3.setFont(QFont("Futura", 38))
         self.button3.clicked.connect(self.press3);
+        self.button3.setStyleSheet('background: #d8d8d8; color: black;padding: 20px;')
 
-        self.button4 = QPushButton("\n");
-        self.button4.setStyleSheet('background: transparent; color: gold')
-        self.button4.setFont(QFont("Arial", 30));
+        self.button4 = QPushButton("4\n");
+        self.button4.setFont(QFont("Futura", 38));
         self.button4.clicked.connect(self.press4);
+        self.button4.setStyleSheet('background: #d8d8d8; color: black;padding: 20px;')
 
-        self.button5 = QPushButton("\n");
-        self.button5.setStyleSheet('background: transparent; color: gold')
-        self.button5.setFont(QFont("Arial", 30))
+        self.button5 = QPushButton("5\n");
+        self.button5.setFont(QFont("Futura", 38))
         self.button5.clicked.connect(self.press5);
+        self.button5.setStyleSheet('background: #d8d8d8; color: black;padding: 20px;')
 
-        self.button6 = QPushButton("\n");
-        self.button6.setStyleSheet('background: transparent; color: gold')
-        self.button6.setFont(QFont("Arial", 30))
+        self.button6 = QPushButton("6\n");
+        self.button6.setFont(QFont("Futura", 38))
         self.button6.clicked.connect(self.press6);
+        self.button6.setStyleSheet('background: #d8d8d8; color: black;padding: 20px;')
 
-        self.button7 = QPushButton("\n");
-        self.button7.setStyleSheet('background: transparent; color: gold')
-        self.button7.setFont(QFont("Arial", 30))
+        self.button7 = QPushButton("7\n");
+        self.button7.setFont(QFont("Futura", 38))
         self.button7.clicked.connect(self.press7);
+        self.button7.setStyleSheet('background: #d8d8d8; color: black;padding: 20px;')
 
-        self.button8 = QPushButton("\n");
-        self.button8.setStyleSheet('background: transparent; color: gold')
-        self.button8.setFont(QFont("Arial", 30))
+        self.button8 = QPushButton("8\n");
+        self.button8.setFont(QFont("Futura", 38))
         self.button8.clicked.connect(self.press8);
-
-        self.button9 = QPushButton("\n");
-        self.button9.setStyleSheet('background: transparent; color: gold')
-        self.button9.setFont(QFont("Arial", 30))
+        self.button8.setStyleSheet('background: #d8d8d8; color: black;padding: 20px;')
+        
+        self.button9 = QPushButton("9 \n");
+        self.button9.setFont(QFont("Futura", 40))
         self.button9.clicked.connect(self.press9);
+        self.button9.setStyleSheet('background: #d8d8d8; color: black;padding: 20px;')
+
+        
+
 
         self.button_dot = QPushButton(". \n");
-        self.button_dot.setStyleSheet('background: transparent; color: gold')
-        self.button_dot.setFont(QFont("Arial", 30))
+        self.button_dot.setFont(QFont("Futura", 38))
         self.button_dot.clicked.connect(self.pressDot)
+        self.button_dot.setStyleSheet('background: #d8d8d8; color: black;padding: 20px;')
 
-        self.enterButton = QPushButton("Enter \n");
-        self.enterButton.setFont(QFont("Arial", 30));
-        self.enterButton.setStyleSheet('background: transparent; color: gold; border: 3px solid-white')
+        self.enterButton = QPushButton("Next \n");
+        self.enterButton.setFont(QFont("Futura", 38));
+        self.enterButton.setStyleSheet('background: transparent; color: gold;padding: 20px;')
         self.enterButton.clicked.connect(self.enter);
 
-        self.clearButton = QPushButton("Clear \n");
-        self.clearButton.setStyleSheet('background: transparent; color: black')
-        self.clearButton.setFont(QFont("Arial", 30));
+       # self.enterButton.setStyleSheet('background: transparent; color: gold; border: 3px solid white')
+
+        self.clearButton = QPushButton("Clear\n");
+        self.clearButton.setFont(QFont("Futura", 38));
         self.clearButton.clicked.connect(self.clear);
-        self.button1.setIcon(QIcon('1.png'))
-        self.button1.setIconSize(QSize(80,80))
-
-        self.button2.setIcon(QIcon('2.png'))
-        self.button2.setIconSize(QSize(80,80))
-
-        self.button3.setIcon(QIcon('3.png'))
-        self.button3.setIconSize(QSize(80,80))
-
-
-        self.button4.setIcon(QIcon('4.png'))
-        self.button4.setIconSize(QSize(80,80))
-
-
-        self.button5.setIcon(QIcon('5.png'))
-        self.button5.setIconSize(QSize(80,80))
-
-
-        self.button6.setIcon(QIcon('6.png'))
-        self.button6.setIconSize(QSize(80,80))
-
-        self.button7.setIcon(QIcon('7.png'))
-        self.button7.setIconSize(QSize(80,80))
-
-
-        self.button8.setIcon(QIcon('8.png'))
-        self.button8.setIconSize(QSize(80,80))
-                
-        self.button9.setIcon(QIcon('9.png'))
-        self.button9.setIconSize(QSize(80,80))
-
-        self.button0.setIcon(QIcon('0.png'))
-        self.button0.setIconSize(QSize(80,80))        
-
+        self.clearButton.setStyleSheet('background: #d8d8d8; color: black;padding: 20px;')
+        
 
         self.LabelButton = QLabel('seconds');
-        self.LabelButton.setStyleSheet('background: transparent; color: gold')
         self.LabelButton.setAlignment(Qt.AlignCenter)
-        self.LabelButton.setFont(QFont("Arial", 30))
+        self.LabelButton.setFont(QFont("Futura", 38))
+        self.LabelButton.setStyleSheet('background: transparent; color: gold')
         
         # Adding buttons to grid
-        self.grid.addWidget(self.button1, 5,0,2,2);
-        self.grid.addWidget(self.button2, 5, 2, 2, 2);
-        self.grid.addWidget(self.button3, 5, 4,2,2);
-        self.grid.addWidget(self.button4, 7, 0,2,2);
-        self.grid.addWidget(self.button5, 7,2,2,2);
-        self.grid.addWidget(self.button6, 7,4,2,2);
-        self.grid.addWidget(self.button7, 9,0,2,2);
-        self.grid.addWidget(self.button8, 9,2,2,2);
-        self.grid.addWidget(self.button9, 9, 4,2,2);
-        self.grid.addWidget(self.button_dot, 11,0,2,2)
+        self.grid.addWidget(self.button1, 7,0,2,3);
+        self.grid.addWidget(self.button2, 7, 3, 2, 3);
+        self.grid.addWidget(self.button3, 7, 6,2,3);
+        self.grid.addWidget(self.button4, 9, 0,2,3);
+        self.grid.addWidget(self.button5, 9,3,2,3);
+        self.grid.addWidget(self.button6, 9,6,2,3);
+        self.grid.addWidget(self.button7, 11,0,2,3);
+        self.grid.addWidget(self.button8, 11,3,2,3);
+        self.grid.addWidget(self.button9, 11,6,2,3);
+        self.grid.addWidget(self.button0, 13, 3, 2, 3);
+
+        self.grid.addWidget(self.clearButton, 13, 6, 2, 3);
+
+
+        self.grid.addWidget(self.button_dot, 13,0,2,3)
         self.grid.addWidget(self.welcomeLabel, 0, 0, 2, 15);
 
-        self.grid.addWidget(self.backButton, 13, 10, 2, 4)
+       # self.grid.addWidget(self.backButton, 13, 10, 2, 4)
         self.grid.addWidget(self.display_label, 5,10,2,4);
-        self.grid.addWidget(self.LabelButton, 8,10,2,4)
-        self.grid.addWidget(self.enterButton,10,10,2,4);
+        self.grid.addWidget(self.LabelButton, 7,10,2,4)
+        self.grid.addWidget(self.enterButton,13,11,2,3);
         self.setLayout(self.grid)
-
-
     def press1(self):
         global closeDelayString;
         closeDelayString += "1";
 
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(closeDelayString);
 
     def press2(self):
         global closeDelayString;
         closeDelayString += "2";
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(closeDelayString);
 
     def press3(self):
         global closeDelayString;
         closeDelayString += "3";
 
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(closeDelayString);
 
     def press4(self):
         global closeDelayString;
         closeDelayString += "4";
 
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(closeDelayString);
 
     def press5(self):
         global closeDelayString;
         closeDelayString += "5";
 
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(closeDelayString);
 
     def press6(self):
         global closeDelayString;
         closeDelayString += "6";
 
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(closeDelayString);
 
     def press7(self):
         global closeDelayString;
         closeDelayString += "7";
 
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(closeDelayString);
 
     def press8(self):
         global closeDelayString;
         closeDelayString += "8";
 
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(closeDelayString);
 
     def press9(self):
         global closeDelayString;
         closeDelayString += "9";
 
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(closeDelayString);
 
     def pressDot(self):
         global closeDelayString;
         closeDelayString += "."
 
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(closeDelayString);
 
     def press0(self):
         global closeDelayString;
         closeDelayString += "0";
 
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(closeDelayString);
 
     def enter(self):
@@ -1078,163 +1048,157 @@ class PressureMaximum(QWidget):
         self.setFixedHeight(600);
 
         self.grid = QGridLayout()
+
+        for x in range(15):
+            for y in range(15):
+                tmp = QLabel('')
+                tmp.setStyleSheet('background: transparent')
+                self.grid.addWidget(tmp, x,y)
+
         
         self.text_field = QPlainTextEdit(self)
         self.text_field.setMinimumSize (1024,600)
-        self.text_field.setStyleSheet("background-image: url(background.png); background-attachment: fixed")
+        self.text_field.setStyleSheet("background-image: url(gray-background.png); background-attachment: fixed")
 
 
         # Welcome Label
-        self.welcomeLabel = QLabel("What is the maximal allowable Pressure? \n");
-        self.welcomeLabel.setFont(QFont("Arial", 50));
+        self.welcomeLabel = QLabel("Maximal allowable Pressure? \n");
+        self.welcomeLabel.setWordWrap(True);
+        self.welcomeLabel.setFont(QFont("Futura",60 ));
+        self.welcomeLabel.setAlignment(Qt.AlignCenter)
         self.welcomeLabel.setStyleSheet('background: transparent; color: gold')
-        self.welcomeLabel.setAlignment(Qt.AlignCenter);
+
+        self.backButton = QPushButton('Back \n')
+        self.backButton.setFont(QFont("Futura", 38));
+        self.backButton.clicked.connect(self.back);
+        self.backButton.setStyleSheet('background: transparent; color: gold')
 
         # Display Label
-        self.display_label =QLabel("");
-        self.display_label.setFont(QFont("Arial", 50));
-        self.display_label.setAlignment(Qt.AlignCenter)
+        self.display_label = QPushButton("" + "\n");
+        self.display_label.setFont(QFont("Futura", 60));
+        #self.display_label.setAlignment(Qt.AlignCenter)
         self.display_label.setStyleSheet('background: transparent; color: gold')
-        # need to implement the units portion of this still
-
-        units = ' ' + unitFlag;
-
-        self.unitLabel = QLabel(units);
-        self.unitLabel.setFont(QFont("Arial", 30));
-        self.unitLabel.setStyleSheet('background: transparent; color: gold')
-        self.grid.addWidget(self.unitLabel, 7, 11, 1, 3);
 
         # Button setup happens here
-        self.button0 = QPushButton("\n");
-        self.button0.setStyleSheet('background: transparent; color: gold')
-        self.button0.setFont(QFont("Arial", 30));
+        self.button0 = QPushButton("0\n");
+        self.button0.setFont(QFont("Futura", 38));
         self.button0.clicked.connect(self.press0);
-        self.grid.addWidget(self.button0, 11, 4, 2, 2);
+        self.button0.setStyleSheet('text-align:right')
+        self.button0.setStyleSheet('background: #d8d8d8; color: black;padding: 20px;')
+
+
 
         # Button setup happens here
-        self.button1 = QPushButton("\n");
-        self.button1.setStyleSheet('background: transparent; color: gold')
-        self.button1.setFont(QFont("Arial", 30));
+        self.button1 = QPushButton("1\n");
+        self.button1.setFont(QFont("Futura", 38));
         self.button1.clicked.connect(self.press1);
 
-        self.button2 = QPushButton("\n");
-        self.button2.setStyleSheet('background: transparent; color: gold')
-        self.button2.setFont(QFont("Arial", 30));
+        self.button1.setStyleSheet('background: #d8d8d8; color: black;padding: 20px;')
+
+
+        self.button2 = QPushButton("2\n");
+        self.button2.setFont(QFont("Futura", 38));
         self.button2.clicked.connect(self.press2)
+        self.button2.setStyleSheet('background: #d8d8d8; color: black;padding: 20px;')
 
-        self.button3 = QPushButton("\n");
-        self.button3.setStyleSheet('background: transparent; color: gold')
-        self.button3.setFont(QFont("Arial", 30))
+        self.button3 = QPushButton("3\n");
+        self.button3.setFont(QFont("Futura", 38))
         self.button3.clicked.connect(self.press3);
+        self.button3.setStyleSheet('background: #d8d8d8; color: black;padding: 20px;')
 
-        self.button4 = QPushButton("\n");
-        self.button4.setStyleSheet('background: transparent; color: gold')
-        self.button4.setFont(QFont("Arial", 30));
+        self.button4 = QPushButton("4\n");
+        self.button4.setFont(QFont("Futura", 38));
         self.button4.clicked.connect(self.press4);
+        self.button4.setStyleSheet('background: #d8d8d8; color: black;padding: 20px;')
 
-        self.button5 = QPushButton("\n");
-        self.button5.setStyleSheet('background: transparent; color: gold')
-        self.button5.setFont(QFont("Arial", 30))
+        self.button5 = QPushButton("5\n");
+        self.button5.setFont(QFont("Futura", 38))
         self.button5.clicked.connect(self.press5);
+        self.button5.setStyleSheet('background: #d8d8d8; color: black;padding: 20px;')
 
-        self.button6 = QPushButton("\n");
-        self.button6.setStyleSheet('background: transparent; color: gold')
-        self.button6.setFont(QFont("Arial", 30))
+        self.button6 = QPushButton("6\n");
+        self.button6.setFont(QFont("Futura", 38))
         self.button6.clicked.connect(self.press6);
+        self.button6.setStyleSheet('background: #d8d8d8; color: black;padding: 20px;')
 
-        self.button7 = QPushButton("\n");
-        self.button7.setStyleSheet('background: transparent; color: gold')
-        self.button7.setFont(QFont("Arial", 30))
+        self.button7 = QPushButton("7\n");
+        self.button7.setFont(QFont("Futura", 38))
         self.button7.clicked.connect(self.press7);
+        self.button7.setStyleSheet('background: #d8d8d8; color: black;padding: 20px;')
 
-        self.button8 = QPushButton("\n");
-        self.button8.setStyleSheet('background: transparent; color: gold')
-        self.button8.setFont(QFont("Arial", 30))
+        self.button8 = QPushButton("8\n");
+        self.button8.setFont(QFont("Futura", 38))
         self.button8.clicked.connect(self.press8);
-
-        self.button9 = QPushButton("\n");
-        self.button9.setStyleSheet('background: transparent; color: gold')
-        self.button9.setFont(QFont("Arial", 30))
+        self.button8.setStyleSheet('background: #d8d8d8; color: black;padding: 20px;')
+        
+        self.button9 = QPushButton("9 \n");
+        self.button9.setFont(QFont("Futura", 40))
         self.button9.clicked.connect(self.press9);
+        self.button9.setStyleSheet('background: #d8d8d8; color: black;padding: 20px;')
+
+        
+
 
         self.button_dot = QPushButton(". \n");
-        self.button_dot.setStyleSheet('background: transparent; color: gold')
-        self.button_dot.setFont(QFont("Arial", 30))
+        self.button_dot.setFont(QFont("Futura", 38))
         self.button_dot.clicked.connect(self.pressDot)
+        self.button_dot.setStyleSheet('background: #d8d8d8; color: black;padding: 20px;')
 
-        self.enterButton = QPushButton("Enter \n");
-        self.enterButton.setFont(QFont("Arial", 30));
-        self.enterButton.setStyleSheet('background: transparent; color: gold;border: 3px solid white')
+        self.enterButton = QPushButton("Next \n");
+        self.enterButton.setFont(QFont("Futura", 38));
+        self.enterButton.setStyleSheet('background: transparent; color: gold;padding: 20px;')
         self.enterButton.clicked.connect(self.enter);
 
-        self.clearButton = QPushButton("Clear \n");
-        self.clearButton.setStyleSheet('background: transparent; color: black')
-        self.clearButton.setFont(QFont("Arial", 30));
+       # self.enterButton.setStyleSheet('background: transparent; color: gold; border: 3px solid white')
+
+        self.clearButton = QPushButton("Clear\n");
+        self.clearButton.setFont(QFont("Futura", 38));
         self.clearButton.clicked.connect(self.clear);
+        self.clearButton.setStyleSheet('background: #d8d8d8; color: black;padding: 20px;')
+        
 
-        self.button1.setIcon(QIcon('1.png'))
-        self.button1.setIconSize(QSize(80,80))
-
-        self.button2.setIcon(QIcon('2.png'))
-        self.button2.setIconSize(QSize(80,80))
-
-        self.button3.setIcon(QIcon('3.png'))
-        self.button3.setIconSize(QSize(80,80))
-
-
-        self.button4.setIcon(QIcon('4.png'))
-        self.button4.setIconSize(QSize(80,80))
-
-
-        self.button5.setIcon(QIcon('5.png'))
-        self.button5.setIconSize(QSize(80,80))
-
-
-        self.button6.setIcon(QIcon('6.png'))
-        self.button6.setIconSize(QSize(80,80))
-
-        self.button7.setIcon(QIcon('7.png'))
-        self.button7.setIconSize(QSize(80,80))
-
-
-        self.button8.setIcon(QIcon('8.png'))
-        self.button8.setIconSize(QSize(80,80))
-                
-        self.button9.setIcon(QIcon('9.png'))
-        self.button9.setIconSize(QSize(80,80))
-
-        self.button0.setIcon(QIcon('0.png'))
-        self.button0.setIconSize(QSize(80,80))        
-
+        self.LabelButton = QLabel(unitFlag);
+        self.LabelButton.setAlignment(Qt.AlignCenter)
+        self.LabelButton.setFont(QFont("Futura", 38))
+        self.LabelButton.setStyleSheet('background: transparent; color: gold')
+        
         # Adding buttons to grid
-        self.grid.addWidget(self.button1, 5, 0, 2, 2);
-        self.grid.addWidget(self.button2, 5, 2, 2, 2);
-        self.grid.addWidget(self.button3, 5, 4, 2, 2);
-        self.grid.addWidget(self.button4, 7, 0, 2, 2);
-        self.grid.addWidget(self.button5, 7, 2, 2, 2);
-        self.grid.addWidget(self.button6, 7, 4, 2, 2);
-        self.grid.addWidget(self.button7, 9, 0, 2, 2);
-        self.grid.addWidget(self.button8, 9, 2, 2, 2);
-        self.grid.addWidget(self.button9, 9, 4, 2, 2);
-        self.grid.addWidget(self.button_dot, 11, 0, 2, 2)
-        self.grid.addWidget(self.welcomeLabel, 0, 0, 3, 15);
-        self.grid.addWidget(self.display_label, 5, 9, 1, 6);
-        self.grid.addWidget(self.enterButton, 8, 10, 2, 4);
-        self.grid.addWidget(self.clearButton, 13, 1, 2, 4);
-        self.setLayout(self.grid)
+        self.grid.addWidget(self.button1, 7,0,2,3);
+        self.grid.addWidget(self.button2, 7, 3, 2, 3);
+        self.grid.addWidget(self.button3, 7, 6,2,3);
+        self.grid.addWidget(self.button4, 9, 0,2,3);
+        self.grid.addWidget(self.button5, 9,3,2,3);
+        self.grid.addWidget(self.button6, 9,6,2,3);
+        self.grid.addWidget(self.button7, 11,0,2,3);
+        self.grid.addWidget(self.button8, 11,3,2,3);
+        self.grid.addWidget(self.button9, 11,6,2,3);
+        self.grid.addWidget(self.button0, 13, 3, 2, 3);
 
+        self.grid.addWidget(self.clearButton, 13, 6, 2, 3);
+
+
+        self.grid.addWidget(self.button_dot, 13,0,2,3)
+        self.grid.addWidget(self.welcomeLabel, 0, 0, 2, 15);
+
+       # self.grid.addWidget(self.backButton, 13, 10, 2, 4)
+        self.grid.addWidget(self.display_label, 5,10,2,4);
+        self.grid.addWidget(self.LabelButton, 7,10,2,4)
+        self.grid.addWidget(self.enterButton,13,11,2,3);
+        self.setLayout(self.grid)
+    def back(self):
+        pass
     def press1(self):
         global pressureString;
         pressureString += "1";
 
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(pressureString);
         self.display_label.setAlignment(Qt.AlignCenter)
 
     def press2(self):
         global pressureString;
         pressureString += "2";
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(pressureString);
         self.display_label.setAlignment(Qt.AlignCenter)
 
@@ -1242,7 +1206,7 @@ class PressureMaximum(QWidget):
         global pressureString;
         pressureString += "3";
 
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(pressureString);
         self.display_label.setAlignment(Qt.AlignCenter)
 
@@ -1250,7 +1214,7 @@ class PressureMaximum(QWidget):
         global pressureString;
         pressureString += "4";
 
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(pressureString);
         self.display_label.setAlignment(Qt.AlignCenter)
 
@@ -1258,7 +1222,7 @@ class PressureMaximum(QWidget):
         global pressureString;
         pressureString += "5";
 
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(pressureString);
         self.display_label.setAlignment(Qt.AlignCenter)
 
@@ -1266,7 +1230,7 @@ class PressureMaximum(QWidget):
         global pressureString;
         pressureString += "6";
 
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(pressureString);
         self.display_label.setAlignment(Qt.AlignCenter)
 
@@ -1274,7 +1238,7 @@ class PressureMaximum(QWidget):
         global pressureString;
         pressureString += "7";
 
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(pressureString);
         self.display_label.setAlignment(Qt.AlignCenter)
 
@@ -1282,7 +1246,7 @@ class PressureMaximum(QWidget):
         global pressureString;
         pressureString += "8";
 
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(pressureString);
         self.display_label.setAlignment(Qt.AlignCenter)
         self.display_label.setAlignment(Qt.AlignCenter)
@@ -1291,7 +1255,7 @@ class PressureMaximum(QWidget):
         global pressureString;
         pressureString += "9";
 
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(pressureString);
         self.display_label.setAlignment(Qt.AlignCenter)
 
@@ -1299,7 +1263,7 @@ class PressureMaximum(QWidget):
         global pressureString;
         pressureString += "."
 
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(pressureString);
         self.display_label.setAlignment(Qt.AlignCenter)
 
@@ -1307,7 +1271,7 @@ class PressureMaximum(QWidget):
         global pressureString;
         pressureString += "0";
 
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(pressureString);
         self.display_label.setAlignment(Qt.AlignCenter)
     def enter(self):
@@ -1334,231 +1298,220 @@ class VolumeLimit(QWidget):
 
         self.grid = QGridLayout()
 
+
+        for x in range(15):
+            for y in range(15):
+                tmp = QLabel('')
+                tmp.setStyleSheet('background: transparent')
+                self.grid.addWidget(tmp, x,y)
+
         self.text_field = QPlainTextEdit(self)
         self.text_field.setMinimumSize (1024,600)
-        self.text_field.setStyleSheet("background-image: url(background.png); background-attachment: fixed")
+        self.text_field.setStyleSheet("background-image: url(gray-background.png); background-attachment: fixed")
 
 
         # Welcome Label
-        self.welcomeLabel = QLabel("What is max amount to be drained ? \n");
-        self.welcomeLabel.setStyleSheet('background: transparent; color: gold')
-        self.welcomeLabel.setFont(QFont("Arial",50));
-        self.welcomeLabel.setWordWrap(True)
+        self.welcomeLabel = QLabel("Maxmium Drainage Amount? \n");
+        self.welcomeLabel.setWordWrap(True);
+        self.welcomeLabel.setFont(QFont("Futura",60));
         self.welcomeLabel.setAlignment(Qt.AlignCenter)
+        self.welcomeLabel.setStyleSheet('background: transparent; color: gold')
 
+        self.backButton = QPushButton('Back \n')
+        self.backButton.setFont(QFont("Futura", 38));
+        self.backButton.clicked.connect(self.back);
+        self.backButton.setStyleSheet('background: transparent; color: gold')
 
         # Display Label
-        self.display_label =QLabel("");
-        self.display_label.setFont(QFont("Arial", 30));
-        self.display_label.setAlignment(Qt.AlignCenter)
+        self.display_label = QLabel("" + "\n");
+        self.display_label.setFont(QFont("Futura", 60));
+        #self.display_label.setAlignment(Qt.AlignCenter)
         self.display_label.setStyleSheet('background: transparent; color: gold')
 
-        # need to implement the units portion of this still
-
-        self.unitLabel = QLabel('mL/hr');
-        self.unitLabel.setFont(QFont("Arial", 30));
-        self.unitLabel.setStyleSheet('background: transparent; color: gold')
-        self.unitLabel.setAlignment(Qt.AlignCenter)
-        self.grid.addWidget(self.unitLabel, 7,10,1,3);
-
         # Button setup happens here
-        self.button0 = QPushButton("\n");
-        self.button0.setFont(QFont("Arial", 30));
+        self.button0 = QPushButton("0\n");
+        self.button0.setFont(QFont("Futura", 38));
         self.button0.clicked.connect(self.press0);
-        self.button0.setStyleSheet('background: transparent; color: gold')
-        self.grid.addWidget(self.button0, 11, 4, 2, 2);
+        self.button0.setStyleSheet('background: #d8d8d8; color: black;padding: 60px;')
+
 
 
         # Button setup happens here
-        self.button1 = QPushButton("\n");
-        self.button1.setStyleSheet('background: transparent; color: gold')
-        self.button1.setFont(QFont("Arial", 30));
+        self.button1 = QPushButton("1\n");
+        self.button1.setFont(QFont("Futura", 38));
         self.button1.clicked.connect(self.press1);
 
-        self.button2 = QPushButton("\n");
-        self.button2.setStyleSheet('background: transparent; color: gold')
-        self.button2.setFont(QFont("Arial", 30));
+        self.button1.setStyleSheet('background: #d8d8d8; color: black;padding: 60px;')
+
+
+        self.button2 = QPushButton("2\n");
+        self.button2.setFont(QFont("Futura", 38));
         self.button2.clicked.connect(self.press2)
+        self.button2.setStyleSheet('background: #d8d8d8; color: black;padding: 60px;')
 
-        self.button3 = QPushButton("\n");
-        self.button3.setFont(QFont("Arial", 30))
-        self.button3.setStyleSheet('background: transparent; color: gold')
+        self.button3 = QPushButton("3\n");
+        self.button3.setFont(QFont("Futura", 38))
         self.button3.clicked.connect(self.press3);
+        self.button3.setStyleSheet('background: #d8d8d8; color: black;padding: 60px;')
 
-        self.button4 = QPushButton("\n");
-        self.button4.setStyleSheet('background: transparent; color: gold')
-        self.button4.setFont(QFont("Arial", 30));
+        self.button4 = QPushButton("4\n");
+        self.button4.setFont(QFont("Futura", 38));
         self.button4.clicked.connect(self.press4);
+        self.button4.setStyleSheet('background: #d8d8d8; color: black;padding: 60px;')
 
-        self.button5 = QPushButton("\n");
-        self.button5.setStyleSheet('background: transparent; color: gold')
-        self.button5.setFont(QFont("Arial", 30))
+        self.button5 = QPushButton("5\n");
+        self.button5.setFont(QFont("Futura", 38))
         self.button5.clicked.connect(self.press5);
+        self.button5.setStyleSheet('background: #d8d8d8; color: black;padding: 60px;')
 
-        self.button6 = QPushButton("\n");
-        self.button6.setStyleSheet('background: transparent; color: gold')
-        self.button6.setFont(QFont("Arial", 30))
+        self.button6 = QPushButton("6\n");
+        self.button6.setFont(QFont("Futura", 38))
         self.button6.clicked.connect(self.press6);
+        self.button6.setStyleSheet('background: #d8d8d8; color: black;padding: 60px;')
 
-        self.button7 = QPushButton("\n");
-        self.button7.setStyleSheet('background: transparent; color: gold')
-        self.button7.setFont(QFont("Arial", 30))
+        self.button7 = QPushButton("7\n");
+        self.button7.setFont(QFont("Futura", 38))
         self.button7.clicked.connect(self.press7);
+        self.button7.setStyleSheet('background: #d8d8d8; color: black;padding: 60px;')
 
-        self.button8 = QPushButton("\n");
-        self.button8.setStyleSheet('background: transparent; color: gold')
-        self.button8.setFont(QFont("Arial", 30))
+        self.button8 = QPushButton("8\n");
+        self.button8.setFont(QFont("Futura", 38))
         self.button8.clicked.connect(self.press8);
-
-        self.button9 = QPushButton("\n");
-        self.button9.setStyleSheet('background: transparent; color: gold')
-        self.button9.setFont(QFont("Arial", 30))
+        self.button8.setStyleSheet('background: #d8d8d8; color: black;padding: 60px;')
+        
+        self.button9 = QPushButton("9 \n");
+        self.button9.setFont(QFont("Futura", 40))
         self.button9.clicked.connect(self.press9);
+        self.button9.setStyleSheet('background: #d8d8d8; color: black;padding: 60px;')
+
+        
+
 
         self.button_dot = QPushButton(". \n");
-        self.button_dot.setStyleSheet('background: transparent; color: gold')
-        self.button_dot.setFont(QFont("Arial", 30))
+        self.button_dot.setFont(QFont("Futura", 38))
         self.button_dot.clicked.connect(self.pressDot)
+        self.button_dot.setStyleSheet('background: #d8d8d8; color: black;padding: 60px;')
 
-        self.enterButton = QPushButton("Enter \n");
-        self.enterButton.setStyleSheet('background: transparent; color: gold; border: 3px solid white')
-        self.enterButton.setFont(QFont("Arial", 30));
+        self.enterButton = QPushButton("Next \n");
+        self.enterButton.setFont(QFont("Futura", 38));
+        self.enterButton.setStyleSheet('background: transparent; color: gold;padding: 60px;')
         self.enterButton.clicked.connect(self.enter);
 
-        self.clearButton = QPushButton("Clear \n");
-        self.clearButton.setStyleSheet('background: transparent; color: black')
-        self.clearButton.setFont(QFont("Arial", 30));
+       # self.enterButton.setStyleSheet('background: transparent; color: gold; border: 3px solid white')
+
+        self.clearButton = QPushButton("Clear\n");
+        self.clearButton.setFont(QFont("Futura", 38));
         self.clearButton.clicked.connect(self.clear);
+        self.clearButton.setStyleSheet('background: #d8d8d8; color: black;padding: 60px;')
+        
 
-        self.button1.setIcon(QIcon('1.png'))
-        self.button1.setIconSize(QSize(80,80));
-
-        self.button2.setIcon(QIcon('2.png'))
-        self.button2.setIconSize(QSize(80,80))
-
-        self.button3.setIcon(QIcon('3.png'))
-        self.button3.setIconSize(QSize(80,80))
-
-
-        self.button4.setIcon(QIcon('4.png'))
-        self.button4.setIconSize(QSize(80,80))
-
-
-        self.button5.setIcon(QIcon('5.png'))
-        self.button5.setIconSize(QSize(80,80))
-
-
-        self.button6.setIcon(QIcon('6.png'))
-        self.button6.setIconSize(QSize(80,80))
-
-        self.button7.setIcon(QIcon('7.png'))
-        self.button7.setIconSize(QSize(80,80))
-
-
-        self.button8.setIcon(QIcon('8.png'))
-        self.button8.setIconSize(QSize(80,80))
-                
-        self.button9.setIcon(QIcon('9.png'))
-        self.button9.setIconSize(QSize(80,80))
-
-        self.button0.setIcon(QIcon('0.png'))
-        self.button0.setIconSize(QSize(80,80))        
-
-
+        self.LabelButton = QLabel('mL/hr');
+        self.LabelButton.setAlignment(Qt.AlignCenter)
+        self.LabelButton.setFont(QFont("Futura", 38))
+        self.LabelButton.setStyleSheet('background: transparent; color: gold')
+        
         # Adding buttons to grid
-        self.grid.addWidget(self.button1, 5,0,2,2);
-        self.grid.addWidget(self.button2, 5, 2, 2, 2);
-        self.grid.addWidget(self.button3, 5, 4,2,2);
-        self.grid.addWidget(self.button4, 7, 0,2,2);
-        self.grid.addWidget(self.button5, 7,2,2,2);
-        self.grid.addWidget(self.button6, 7,4,2,2);
-        self.grid.addWidget(self.button7, 9,0,2,2);
-        self.grid.addWidget(self.button8, 9,2,2,2);
-        self.grid.addWidget(self.button9, 9, 4,2,2);
-        self.grid.addWidget(self.button_dot, 11,0,2,2)
-        self.grid.addWidget(self.welcomeLabel, 2, 0, 3, 15);
-        self.grid.addWidget(self.display_label, 5, 10, 2, 4);
-        self.grid.addWidget(self.enterButton, 8, 10, 2, 4);
-        self.grid.addWidget(self.clearButton, 13, 1, 2, 4);
+        self.grid.addWidget(self.button1, 7,0,2,3);
+        self.grid.addWidget(self.button2, 7, 3, 2, 3);
+        self.grid.addWidget(self.button3, 7, 6,2,3);
+        self.grid.addWidget(self.button4, 9, 0,2,3);
+        self.grid.addWidget(self.button5, 9,3,2,3);
+        self.grid.addWidget(self.button6, 9,6,2,3);
+        self.grid.addWidget(self.button7, 11,0,2,3);
+        self.grid.addWidget(self.button8, 11,3,2,3);
+        self.grid.addWidget(self.button9, 11,6,2,3);
+        self.grid.addWidget(self.button0, 13, 3, 2, 3);
+
+        self.grid.addWidget(self.clearButton, 13, 6, 2, 3);
+
+
+        self.grid.addWidget(self.button_dot, 13,0,2,3)
+        self.grid.addWidget(self.welcomeLabel, 2, 0, 2, 15);
+
+       # self.grid.addWidget(self.backButton, 13, 10, 2, 4)
+        self.grid.addWidget(self.display_label, 5,10,2,4);
+        self.grid.addWidget(self.LabelButton, 7,10,2,4)
+        self.grid.addWidget(self.enterButton,13,11,2,3);
         self.setLayout(self.grid)
 
-
+    def back(self):
+        pass
 
     def press1(self):
         global volumeLimit_str;
         volumeLimit_str += "1";
 
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(volumeLimit_str);
         self.display_label.setAlignment(Qt.AlignCenter)
     def press2(self):
         global volumeLimit_str;
         volumeLimit_str += "2";
 
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(volumeLimit_str);
         self.display_label.setAlignment(Qt.AlignCenter)
     def press3(self):
         global volumeLimit_str;
         volumeLimit_str += "3";
 
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(volumeLimit_str);
         self.display_label.setAlignment(Qt.AlignCenter)
     def press4(self):
         global volumeLimit_str;
         volumeLimit_str += "4";
 
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(volumeLimit_str);
         self.display_label.setAlignment(Qt.AlignCenter)
     def press5(self):
         global volumeLimit_str;
         volumeLimit_str += "5";
 
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(volumeLimit_str);
         self.display_label.setAlignment(Qt.AlignCenter)
     def press6(self):
         global volumeLimit_str;
         volumeLimit_str += "6";
 
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(volumeLimit_str);
         self.display_label.setAlignment(Qt.AlignCenter)
     def press7(self):
         global volumeLimit_str;
         volumeLimit_str += "7";
 
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(volumeLimit_str);
         self.display_label.setAlignment(Qt.AlignCenter)
     def press8(self):
         global volumeLimit_str;
         volumeLimit_str += "8";
 
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(volumeLimit_str);
         self.display_label.setAlignment(Qt.AlignCenter)
     def press9(self):
         global volumeLimit_str;
         volumeLimit_str += "9";
 
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(volumeLimit_str);
         self.display_label.setAlignment(Qt.AlignCenter)
     def pressDot(self):
         global volumeLimit_str;
         volumeLimit_str += "."
 
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(volumeLimit_str);
         self.display_label.setAlignment(Qt.AlignCenter)
     def press0(self):
         global volumeLimit_str;
         volumeLimit_str += "0";
 
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(volumeLimit_str);
         self.display_label.setAlignment(Qt.AlignCenter)
     def enter(self):
@@ -1584,229 +1537,209 @@ class VolumetricMaximum(QWidget):
 
         self.text_field = QPlainTextEdit(self)
         self.text_field.setMinimumSize (1024,600)
-        self.text_field.setStyleSheet("background-image: url(background.png); background-attachment: fixed")
+        self.text_field.setStyleSheet("background-image: url(gray-background.png); background-attachment: fixed")
         self.grid = QGridLayout()
 
+        for x in range(15):
+            for y in range(15):
+                tmp = QLabel('')
+                tmp.setStyleSheet('background: transparent');
+                self.grid.addWidget(tmp, x,y)
+
      # Welcome Label
-        self.welcomeLabel = QLabel("What is the maximal fluid to be drained?");
-        self.welcomeLabel.setFont(QFont("Arial",25 ));
+        self.welcomeLabel = QLabel("Maximal volume to drain?");
+        self.welcomeLabel.setFont(QFont("Futura",60 ));
         self.welcomeLabel.setAlignment(Qt.AlignCenter)
         self.welcomeLabel.setStyleSheet('background: transparent; color: gold')
-        self.welcomeLabel.setWordWrap(True)
 
         self.backButton = QPushButton('Back \n')
-        self.backButton.setFont(QFont("Arial", 30));
-        self.backButton.setStyleSheet('background: transparent; color: gold')
+        self.backButton.setFont(QFont("Futura", 38));
         self.backButton.clicked.connect(self.back);
+        self.backButton.setStyleSheet('background: transparent; color: gold')
 
         # Display Label
-        self.display_label = QLabel("" + "\n");
-        self.display_label.setFont(QFont("Arial", 75));
+        self.display_label = QPushButton("" + "\n");
+        self.display_label.setFont(QFont("Futura", 60));
+        #self.display_label.setAlignment(Qt.AlignCenter)
         self.display_label.setStyleSheet('background: transparent; color: gold')
-        self.display_label.setAlignment(Qt.AlignCenter)
 
         # Button setup happens here
-        self.button0 = QPushButton("\n");
-        self.button0.setFont(QFont("Arial", 30));
-        self.button0.setStyleSheet('background: transparent; color: gold')
+        self.button0 = QPushButton("0\n");
+        self.button0.setFont(QFont("Futura", 38));
         self.button0.clicked.connect(self.press0);
-        self.grid.addWidget(self.button0, 11, 4, 2, 2);
+        self.button0.setStyleSheet('text-align:right')
+        self.button0.setStyleSheet('background: #d8d8d8; color: black;padding: 20px;')
+
 
 
         # Button setup happens here
-        self.button1 = QPushButton("\n");
-        self.button1.setIcon(QIcon('1.png'))
-        self.button1.setIconSize(QSize(80,80))
-        self.button1.setFont(QFont("Arial", 30));
-        self.button1.setStyleSheet('background: transparent; color: gold')
+        self.button1 = QPushButton("1\n");
+        self.button1.setFont(QFont("Futura", 38));
         self.button1.clicked.connect(self.press1);
 
-        self.button2 = QPushButton("\n");
-        self.button2.setIcon(QIcon('2.png'))
-        self.button2.setIconSize(QSize(80,80));
+        self.button1.setStyleSheet('background: #d8d8d8; color: black;padding: 20px;')
+
+
+        self.button2 = QPushButton("2\n");
+        self.button2.setFont(QFont("Futura", 38));
         self.button2.clicked.connect(self.press2)
-        self.button2.setStyleSheet('background: transparent; color: gold')
+        self.button2.setStyleSheet('background: #d8d8d8; color: black;padding: 20px;')
 
-        self.button3 = QPushButton("\n");
-
-        self.button3.setIcon(QIcon('3.png'))
-        self.button3.setIconSize(QSize(80,80));
-        self.button3.setStyleSheet('background: transparent; color: gold')
+        self.button3 = QPushButton("3\n");
+        self.button3.setFont(QFont("Futura", 38))
         self.button3.clicked.connect(self.press3);
+        self.button3.setStyleSheet('background: #d8d8d8; color: black;padding: 20px;')
 
-        self.button4 = QPushButton("\n");
-        self.button4.setFont(QFont("Arial", 30));
-        self.button4.setStyleSheet('background: transparent; color: gold')
+        self.button4 = QPushButton("4\n");
+        self.button4.setFont(QFont("Futura", 38));
         self.button4.clicked.connect(self.press4);
+        self.button4.setStyleSheet('background: #d8d8d8; color: black;padding: 20px;')
 
-        self.button5 = QPushButton("\n");
-        self.button5.setStyleSheet('background: transparent; color: gold')
-        self.button5.setFont(QFont("Arial", 30))
+        self.button5 = QPushButton("5\n");
+        self.button5.setFont(QFont("Futura", 38))
         self.button5.clicked.connect(self.press5);
+        self.button5.setStyleSheet('background: #d8d8d8; color: black;padding: 20px;')
 
-        self.button6 = QPushButton("\n");
-        self.button6.setStyleSheet('background: transparent; color: gold')
-        self.button6.setFont(QFont("Arial", 30))
+        self.button6 = QPushButton("6\n");
+        self.button6.setFont(QFont("Futura", 38))
         self.button6.clicked.connect(self.press6);
+        self.button6.setStyleSheet('background: #d8d8d8; color: black;padding: 20px;')
 
-        self.button7 = QPushButton("\n");
-        self.button7.setStyleSheet('background: transparent; color: gold')
-        self.button7.setFont(QFont("Arial", 30))
+        self.button7 = QPushButton("7\n");
+        self.button7.setFont(QFont("Futura", 38))
         self.button7.clicked.connect(self.press7);
+        self.button7.setStyleSheet('background: #d8d8d8; color: black;padding: 20px;')
 
-        self.button8 = QPushButton("\n");
-        self.button8.setStyleSheet('background: transparent; color: gold')
-        self.button8.setFont(QFont("Arial", 30))
+        self.button8 = QPushButton("8\n");
+        self.button8.setFont(QFont("Futura", 38))
         self.button8.clicked.connect(self.press8);
-
-        self.button9 = QPushButton("\n");
-        self.button9.setStyleSheet('background: transparent; color: gold')
-        self.button9.setFont(QFont("Arial", 30))
+        self.button8.setStyleSheet('background: #d8d8d8; color: black;padding: 20px;')
+        
+        self.button9 = QPushButton("9 \n");
+        self.button9.setFont(QFont("Futura", 40))
         self.button9.clicked.connect(self.press9);
+        self.button9.setStyleSheet('background: #d8d8d8; color: black;padding: 20px;')
 
-        self.button_dot = QPushButton("\n");
-        self.button_dot.setStyleSheet('background: transparent; color: gold')
-        self.button_dot.setFont(QFont("Arial", 30))
+        
+
+
+        self.button_dot = QPushButton(". \n");
+        self.button_dot.setFont(QFont("Futura", 38))
         self.button_dot.clicked.connect(self.pressDot)
+        self.button_dot.setStyleSheet('background: #d8d8d8; color: black;padding: 20px;')
 
-        self.enterButton = QPushButton("Enter \n");
-        self.enterButton.setStyleSheet('background: transparent; color: gold; border: 3px solid white')
-        self.enterButton.setFont(QFont("Arial", 30));
+        self.enterButton = QPushButton("Next \n");
+        self.enterButton.setFont(QFont("Futura", 38));
+        self.enterButton.setStyleSheet('background: transparent; color: gold;padding: 20px;')
         self.enterButton.clicked.connect(self.enter);
 
-        self.clearButton = QPushButton("Clear \n");
-        self.clearButton.setFont(QFont("Arial", 30));
-        self.clearButton.setStyleSheet('background: transparent; color: black')
+       # self.enterButton.setStyleSheet('background: transparent; color: gold; border: 3px solid white')
+
+        self.clearButton = QPushButton("Clear\n");
+        self.clearButton.setFont(QFont("Futura", 38));
         self.clearButton.clicked.connect(self.clear);
-        self.grid.addWidget(self.clearButton, 13, 1, 2, 4);
+        self.clearButton.setStyleSheet('background: #d8d8d8; color: black;padding: 20px;')
+        
 
-        self.LabelButton = QLabel('mL \n');
-        self.LabelButton.setStyleSheet('background: transparent; color: gold')
+        self.LabelButton = QLabel('mL');
         self.LabelButton.setAlignment(Qt.AlignCenter)
-        self.LabelButton.setFont(QFont("Arial", 30))
-        self.button1.setIcon(QIcon('1.png'))
-        self.button1.setIconSize(QSize(80,80))
-
-        self.button2.setIcon(QIcon('2.png'))
-        self.button2.setIconSize(QSize(80,80))
-
-        self.button3.setIcon(QIcon('3.png'))
-        self.button3.setIconSize(QSize(80,80))
-
-
-        self.button4.setIcon(QIcon('4.png'))
-        self.button4.setIconSize(QSize(80,80))
-
-
-        self.button5.setIcon(QIcon('5.png'))
-        self.button5.setIconSize(QSize(80,80))
-
-
-        self.button6.setIcon(QIcon('6.png'))
-        self.button6.setIconSize(QSize(80,80))
-
-        self.button7.setIcon(QIcon('7.png'))
-        self.button7.setIconSize(QSize(80,80))
-
-
-        self.button8.setIcon(QIcon('8.png'))
-        self.button8.setIconSize(QSize(80,80))
-                
-        self.button9.setIcon(QIcon('9.png'))
-        self.button9.setIconSize(QSize(80,80))
-
-        self.button0.setIcon(QIcon('0.png'))
-        self.button0.setIconSize(QSize(80,80))        
-
+        self.LabelButton.setFont(QFont("Futura", 38))
+        self.LabelButton.setStyleSheet('background: transparent; color: gold')
+        
         # Adding buttons to grid
-        self.grid.addWidget(self.button1, 5,0,2,2);
-        self.grid.addWidget(self.button2, 5, 2, 2, 2);
-        self.grid.addWidget(self.button3, 5, 4,2,2);
-        self.grid.addWidget(self.button4, 7, 0,2,2);
-        self.grid.addWidget(self.button5, 7,2,2,2);
-        self.grid.addWidget(self.button6, 7,4,2,2);
-        self.grid.addWidget(self.button7, 9,0,2,2);
-        self.grid.addWidget(self.button8, 9,2,2,2);
-        self.grid.addWidget(self.button9, 9, 4,2,2);
-        self.grid.addWidget(self.button_dot, 11,0,2,2)
-        self.grid.addWidget(self.welcomeLabel, 1, 0, 2, 15);
+        self.grid.addWidget(self.button1, 7,0,2,3);
+        self.grid.addWidget(self.button2, 7, 3, 2, 3);
+        self.grid.addWidget(self.button3, 7, 6,2,3);
+        self.grid.addWidget(self.button4, 9, 0,2,3);
+        self.grid.addWidget(self.button5, 9,3,2,3);
+        self.grid.addWidget(self.button6, 9,6,2,3);
+        self.grid.addWidget(self.button7, 11,0,2,3);
+        self.grid.addWidget(self.button8, 11,3,2,3);
+        self.grid.addWidget(self.button9, 11,6,2,3);
+        self.grid.addWidget(self.button0, 13, 3, 2, 3);
 
-        self.grid.addWidget(self.backButton, 13, 10, 2, 4)
+        self.grid.addWidget(self.clearButton, 13, 6, 2, 3);
+
+
+        self.grid.addWidget(self.button_dot, 13,0,2,3)
+        self.grid.addWidget(self.welcomeLabel, 0, 0, 2, 15);
+
+       # self.grid.addWidget(self.backButton, 13, 10, 2, 4)
         self.grid.addWidget(self.display_label, 5,10,2,4);
-        self.grid.addWidget(self.LabelButton, 8,10,2,4)
-        self.grid.addWidget(self.enterButton,10,10,2,4);
-        self.setLayout(self.grid)
+        self.grid.addWidget(self.LabelButton, 7,10,2,4)
+        self.grid.addWidget(self.enterButton,13,11,2,3);
+        self.setLayout(self.grid) 
     def press0(self):
-        global maxVol_str;
-        maxVol_str += "0";
-        self.display_label.setFont(QFont("Arial", 30));
-        self.display_label.setText(maxVol_str);
+            global maxVol_str;
+            maxVol_str += "0";
+            self.display_label.setFont(QFont("Futura", 60));
+            self.display_label.setText(maxVol_str);
 
     def press1(self):
         global maxVol_str;
         self.display_label.setP
         maxVol_str += "1";
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(maxVol_str);
 
     def press2(self):
         global maxVol_str;
         maxVol_str += "2";
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(maxVol_str);
 
     def press3(self):
         global maxVol_str;
         maxVol_str += "3";
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(maxVol_str);
 
     def press4(self):
         global maxVol_str;
         maxVol_str += "4";
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(maxVol_str);
 
     def press5(self):
         global maxVol_str;
         maxVol_str += "5";
 
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(maxVol_str);
 
     def press6(self):
         global maxVol_str;
         maxVol_str += "6";
 
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(maxVol_str);
 
     def press7(self):
         global maxVol_str;
         maxVol_str += "7";
 
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(maxVol_str);
 
     def press8(self):
         global maxVol_str;
         maxVol_str += "8";
 
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(maxVol_str);
 
     def press9(self):
         global maxVol_str;
         maxVol_str += "9";
 
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(maxVol_str);
 
     def pressDot(self):
         global maxVol_str;
         maxVol_str += "."
 
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(maxVol_str);
 
     def enter(self):
@@ -1832,226 +1765,209 @@ class OpeningPressure(QWidget):
 
         self.text_field = QPlainTextEdit(self)
         self.text_field.setMinimumSize (1024,600)
-        self.text_field.setStyleSheet("background-image: url(background.png); background-attachment: fixed")
+        self.text_field.setStyleSheet("background-image: url(gray-background.png); background-attachment: fixed")
         self.setFixedWidth(1024);
         self.setFixedHeight(600);
 
         self.grid = QGridLayout()
 
+        for x in range(0,15):
+            for y in range(0,15):
+                tmp = QLabel('')
+                tmp.setStyleSheet('background:transparent')
+                self.grid.addWidget(tmp, x,y)
+
 
         # Welcome Label
         self.welcomeLabel = QLabel("What is the opening pressure?");
-        self.welcomeLabel.setFont(QFont("Arial",50 ));
+        self.welcomeLabel.setFont(QFont("Futura",60 ));
         self.welcomeLabel.setAlignment(Qt.AlignCenter)
         self.welcomeLabel.setStyleSheet('background: transparent; color: gold')
 
         self.backButton = QPushButton('Back \n')
-        self.backButton.setFont(QFont("Arial", 30));
+        self.backButton.setFont(QFont("Futura", 38));
         self.backButton.clicked.connect(self.back);
         self.backButton.setStyleSheet('background: transparent; color: gold')
 
         # Display Label
-        self.display_label = QLabel("" + "\n");
-        self.display_label.setFont(QFont("Arial", 50));
-        self.display_label.setAlignment(Qt.AlignCenter)
+        self.display_label = QPushButton("" + "\n");
+        self.display_label.setFont(QFont("Futura", 60));
+        #self.display_label.setAlignment(Qt.AlignCenter)
         self.display_label.setStyleSheet('background: transparent; color: gold')
 
         # Button setup happens here
-        self.button0 = QPushButton("\n");
-        self.button0.setFont(QFont("Arial", 30));
+        self.button0 = QPushButton("0\n");
+        self.button0.setFont(QFont("Futura", 38));
         self.button0.clicked.connect(self.press0);
-        self.button0.setStyleSheet('background: transparent; color: gold')
-        self.grid.addWidget(self.button0, 11, 4, 2, 2);
+        self.button0.setStyleSheet('text-align:right')
+        self.button0.setStyleSheet('background: #d8d8d8; color: black;padding: 20px;')
+
 
 
         # Button setup happens here
-        self.button1 = QPushButton("\n");
-        self.button1.setFont(QFont("Arial", 30));
+        self.button1 = QPushButton("1\n");
+        self.button1.setFont(QFont("Futura", 38));
         self.button1.clicked.connect(self.press1);
-        self.button1.setStyleSheet('background: transparent; color: gold')
+
+        self.button1.setStyleSheet('background: #d8d8d8; color: black;padding: 20px;')
 
 
-        self.button2 = QPushButton("\n");
-        self.button2.setFont(QFont("Arial", 30));
+        self.button2 = QPushButton("2\n");
+        self.button2.setFont(QFont("Futura", 38));
         self.button2.clicked.connect(self.press2)
-        self.button2.setStyleSheet('background: transparent; color: gold')
+        self.button2.setStyleSheet('background: #d8d8d8; color: black;padding: 20px;')
 
-        self.button3 = QPushButton("\n");
-        self.button3.setFont(QFont("Arial", 30))
+        self.button3 = QPushButton("3\n");
+        self.button3.setFont(QFont("Futura", 38))
         self.button3.clicked.connect(self.press3);
-        self.button3.setStyleSheet('background: transparent; color: gold')
+        self.button3.setStyleSheet('background: #d8d8d8; color: black;padding: 20px;')
 
-        self.button4 = QPushButton("\n");
-        self.button4.setFont(QFont("Arial", 30));
+        self.button4 = QPushButton("4\n");
+        self.button4.setFont(QFont("Futura", 38));
         self.button4.clicked.connect(self.press4);
-        self.button4.setStyleSheet('background: transparent; color: gold')
+        self.button4.setStyleSheet('background: #d8d8d8; color: black;padding: 20px;')
 
-        self.button5 = QPushButton("\n");
-        self.button5.setFont(QFont("Arial", 30))
+        self.button5 = QPushButton("5\n");
+        self.button5.setFont(QFont("Futura", 38))
         self.button5.clicked.connect(self.press5);
-        self.button5.setStyleSheet('background: transparent; color: gold')
+        self.button5.setStyleSheet('background: #d8d8d8; color: black;padding: 20px;')
 
-        self.button6 = QPushButton("\n");
-        self.button6.setFont(QFont("Arial", 30))
+        self.button6 = QPushButton("6\n");
+        self.button6.setFont(QFont("Futura", 38))
         self.button6.clicked.connect(self.press6);
-        self.button6.setStyleSheet('background: transparent; color: gold')
+        self.button6.setStyleSheet('background: #d8d8d8; color: black;padding: 20px;')
 
-        self.button7 = QPushButton("\n");
-        self.button7.setFont(QFont("Arial", 30))
+        self.button7 = QPushButton("7\n");
+        self.button7.setFont(QFont("Futura", 38))
         self.button7.clicked.connect(self.press7);
-        self.button7.setStyleSheet('background: transparent; color: gold')
+        self.button7.setStyleSheet('background: #d8d8d8; color: black;padding: 20px;')
 
-        self.button8 = QPushButton("\n");
-        self.button8.setFont(QFont("Arial", 30))
+        self.button8 = QPushButton("8\n");
+        self.button8.setFont(QFont("Futura", 38))
         self.button8.clicked.connect(self.press8);
-        self.button8.setStyleSheet('background: transparent; color: gold')
+        self.button8.setStyleSheet('background: #d8d8d8; color: black;padding: 20px;')
         
-        self.button9 = QPushButton("\n");
-        self.button9.setFont(QFont("Arial", 30))
+        self.button9 = QPushButton("9 \n");
+        self.button9.setFont(QFont("Futura", 40))
         self.button9.clicked.connect(self.press9);
-        self.button9.setStyleSheet('background: transparent; color: gold')
+        self.button9.setStyleSheet('background: #d8d8d8; color: black;padding: 20px;')
+
+        
+
 
         self.button_dot = QPushButton(". \n");
-        self.button_dot.setFont(QFont("Arial", 30))
+        self.button_dot.setFont(QFont("Futura", 38))
         self.button_dot.clicked.connect(self.pressDot)
-        self.button_dot.setStyleSheet('background: transparent; color: gold')
+        self.button_dot.setStyleSheet('background: #d8d8d8; color: black;padding: 20px;')
 
-        self.enterButton = QPushButton("Enter \n");
-        self.enterButton.setFont(QFont("Arial", 30));
+        self.enterButton = QPushButton("Next \n");
+        self.enterButton.setFont(QFont("Futura", 38));
+        self.enterButton.setStyleSheet('background: transparent; color: gold;padding: 20px;')
         self.enterButton.clicked.connect(self.enter);
 
-        self.enterButton.setStyleSheet('background: transparent; color: gold; border: 3px solid white')
+       # self.enterButton.setStyleSheet('background: transparent; color: gold; border: 3px solid white')
 
-        self.clearButton = QPushButton("Clear \n");
-        self.clearButton.setFont(QFont("Arial", 30));
+        self.clearButton = QPushButton("Clear\n");
+        self.clearButton.setFont(QFont("Futura", 38));
         self.clearButton.clicked.connect(self.clear);
-        self.clearButton.setStyleSheet('background: transparent; color: black')
-        self.grid.addWidget(self.clearButton, 13, 1, 2, 4);
+        self.clearButton.setStyleSheet('background: #d8d8d8; color: black;padding: 20px;')
+        
 
-        self.LabelButton = QLabel(unitFlag);
+        self.LabelButton = QLabel('mL');
         self.LabelButton.setAlignment(Qt.AlignCenter)
-        self.LabelButton.setFont(QFont("Arial", 30))
+        self.LabelButton.setFont(QFont("Futura", 38))
         self.LabelButton.setStyleSheet('background: transparent; color: gold')
         
         # Adding buttons to grid
-        self.grid.addWidget(self.button1, 5,0,2,2);
-        self.grid.addWidget(self.button2, 5, 2, 2, 2);
-        self.grid.addWidget(self.button3, 5, 4,2,2);
-        self.grid.addWidget(self.button4, 7, 0,2,2);
-        self.grid.addWidget(self.button5, 7,2,2,2);
-        self.grid.addWidget(self.button6, 7,4,2,2);
-        self.grid.addWidget(self.button7, 9,0,2,2);
-        self.grid.addWidget(self.button8, 9,2,2,2);
-        self.grid.addWidget(self.button9, 9, 4,2,2);
-        self.grid.addWidget(self.button_dot, 11,0,2,2)
+        self.grid.addWidget(self.button1, 7,0,2,3);
+        self.grid.addWidget(self.button2, 7, 3, 2, 3);
+        self.grid.addWidget(self.button3, 7, 6,2,3);
+        self.grid.addWidget(self.button4, 9, 0,2,3);
+        self.grid.addWidget(self.button5, 9,3,2,3);
+        self.grid.addWidget(self.button6, 9,6,2,3);
+        self.grid.addWidget(self.button7, 11,0,2,3);
+        self.grid.addWidget(self.button8, 11,3,2,3);
+        self.grid.addWidget(self.button9, 11,6,2,3);
+        self.grid.addWidget(self.button0, 13, 3, 2, 3);
+
+        self.grid.addWidget(self.clearButton, 13, 6, 2, 3);
+
+
+        self.grid.addWidget(self.button_dot, 13,0,2,3)
         self.grid.addWidget(self.welcomeLabel, 0, 0, 2, 15);
 
-        self.grid.addWidget(self.backButton, 13, 10, 2, 4)
+       # self.grid.addWidget(self.backButton, 13, 10, 2, 4)
         self.grid.addWidget(self.display_label, 5,10,2,4);
-        self.grid.addWidget(self.LabelButton, 8,10,2,4)
-        self.grid.addWidget(self.enterButton,10,10,2,4);
-        self.setLayout(self.grid)
-
-        self.button1.setIcon(QIcon('1.png'))
-        self.button1.setIconSize(QSize(80,80))
-
-        self.button2.setIcon(QIcon('2.png'))
-        self.button2.setIconSize(QSize(80,80))
-
-        self.button3.setIcon(QIcon('3.png'))
-        self.button3.setIconSize(QSize(80,80))
-
-
-        self.button4.setIcon(QIcon('4.png'))
-        self.button4.setIconSize(QSize(80,80))
-
-
-        self.button5.setIcon(QIcon('5.png'))
-        self.button5.setIconSize(QSize(80,80))
-
-
-        self.button6.setIcon(QIcon('6.png'))
-        self.button6.setIconSize(QSize(80,80))
-
-        self.button7.setIcon(QIcon('7.png'))
-        self.button7.setIconSize(QSize(80,80))
-
-
-        self.button8.setIcon(QIcon('8.png'))
-        self.button8.setIconSize(QSize(80,80))
-                
-        self.button9.setIcon(QIcon('9.png'))
-        self.button9.setIconSize(QSize(80,80))
-
-        self.button0.setIcon(QIcon('0.png'))
-        self.button0.setIconSize(QSize(80,80))        
-
+        self.grid.addWidget(self.LabelButton, 7,10,2,4)
+        self.grid.addWidget(self.enterButton,13,11,2,3);
+        self.setLayout(self.grid)   
     def press0(self):
         global openPressure_str;
         openPressure_str += "0";
 
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(openPressure_str);
     def press1(self):
         global openPressure_str;
         openPressure_str += "1";
 
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(openPressure_str);
     def press2(self):
         global openPressure_str;
         openPressure_str += "2";
 
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(openPressure_str);
     def press3(self):
         global openPressure_str;
         openPressure_str += "3";
 
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(openPressure_str);
     def press4(self):
         global openPressure_str;
         openPressure_str += "4";
 
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(openPressure_str);
     def press5(self):
         global openPressure_str;
         openPressure_str += "5";
 
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(openPressure_str);
     def press6(self):
         global openPressure_str;
         openPressure_str += "6";
 
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(openPressure_str);
     def press7(self):
         global openPressure_str;
         openPressure_str += "7";
 
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(openPressure_str);
     def press8(self):
         global openPressure_str;
         openPressure_str += "8";
 
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(openPressure_str);
     def press9(self):
         global openPressure_str;
         openPressure_str += "9";
 
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(openPressure_str);
     def pressDot(self):
         global openPressure_str;
         openPressure_str += "."
 
-        self.display_label.setFont(QFont("Arial", 30));
+        self.display_label.setFont(QFont("Futura", 60));
         self.display_label.setText(openPressure_str);
+
     def enter(self):
 
         global opening_pressure_val, VolumetricMaximum;
@@ -2082,32 +1998,32 @@ class UnitPrompt(QWidget):
         
         self.text_field = QPlainTextEdit(self)
         self.text_field.setMinimumSize (1024,600)
-        self.text_field.setStyleSheet("background-image: url(background.png); background-attachment: fixed")
+        self.text_field.setStyleSheet("background-image: url(gray-background.png); background-attachment: fixed")
 
 
         # Set Up Label
         self.setUp = QLabel("Select Desired Units Mode");
         self.setUp.setStyleSheet('background: transparent; color: gold')
-        self.setUp.setFont(QFont("Arial", 50));
+        self.setUp.setFont(QFont("Futura", 50));
         self.setUp.setAlignment(Qt.AlignCenter)
         self.grid.addWidget(self.setUp, 0, 0, 2, 15);
 
         # Back Button Implementation
 
         self.backButton = QPushButton("Back \n");
-        self.backButton.setFont(QFont("Arial", 45));
+        self.backButton.setFont(QFont("Futura", 45));
         self.backButton.setStyleSheet('background: transparent; color: gold')
         self.grid.addWidget(self.backButton, 13, 6, 2, 3);
 
         # Check what the volume/pressure_flags are
         self.mmHg = QPushButton("mmHg \n");
         self.mmHg.setStyleSheet('background: transparent; color: gold')
-        self.mmHg.setFont(QFont("Arial",40));
+        self.mmHg.setFont(QFont("Futura",40));
         self.grid.addWidget(self.mmHg, 5,3, 6, 4);
 
         self.cmH20 = QPushButton("cmH20\n");
         self.cmH20.setStyleSheet('background: transparent; color: gold')
-        self.cmH20.setFont(QFont("Arial", 40));
+        self.cmH20.setFont(QFont("Futura", 40));
         self.grid.addWidget(self.cmH20, 5, 8, 6, 4);
         print('Control Flag is ' + str(controlFlag))
         # Actually set the unit flag here
@@ -2151,7 +2067,7 @@ class DrainScreen(QWidget):
 
         self.text_field = QPlainTextEdit(self)
         self.text_field.setMinimumSize (1024,600)
-        self.text_field.setStyleSheet("background-image: url(background.png); background-attachment: fixed")
+        self.text_field.setStyleSheet("background-image: url(gray-background.png); background-attachment: fixed")
         self.setFixedWidth(1024);
         self.setFixedHeight(600);
         self.grid = QGridLayout();
@@ -2160,14 +2076,14 @@ class DrainScreen(QWidget):
         # Set Up Label
         self.setUp = QLabel("Select Drainage Mode");
         self.setUp.setStyleSheet('background: transparent; color: gold')
-        self.setUp.setFont(QFont("Arial", 75));
+        self.setUp.setFont(QFont("Futura", 75));
         self.setUp.setAlignment(Qt.AlignCenter)
         self.grid.addWidget(self.setUp, 0, 0, 2, 15);
 
         # Back Button Implementation
 
         self.backButton = QPushButton("Back \n");
-        self.backButton.setFont(QFont("Arial", 45));
+        self.backButton.setFont(QFont("Futura", 45));
         self.backButton.setStyleSheet('background: transparent; color: gold')
         self.grid.addWidget(self.backButton, 13, 6, 2, 3);
 
@@ -2176,13 +2092,13 @@ class DrainScreen(QWidget):
 
         self.pressureButton = QPushButton("Pressure with \n Volume Limit");
         self.pressureButton.setStyleSheet('background: transparent; color: gold')
-        self.pressureButton.setFont(QFont("Arial",30));
+        self.pressureButton.setFont(QFont("Futura",30));
         self.pressureButton.clicked.connect(self.toPressure);
         self.grid.addWidget(self.pressureButton, 5,3, 6, 4);
 
         # Volume Button
         self.volumeButton = QPushButton("Volume with \n Pressure Limit");
-        self.volumeButton.setFont(QFont("Arial", 30));
+        self.volumeButton.setFont(QFont("Futura", 30));
         self.volumeButton.setStyleSheet('background: transparent; color: gold')
         self.volumeButton.clicked.connect(self.toVolume);
         self.grid.addWidget(self.volumeButton, 5, 8, 6, 4);
@@ -2215,7 +2131,7 @@ class ZeroScreen(QWidget):
 
         self.text_field = QPlainTextEdit(self)
         self.text_field.setMinimumSize (1024,600)
-        self.text_field.setStyleSheet("background-image: url(background.png); background-attachment: fixed")
+        self.text_field.setStyleSheet("background-image: url(gray-background.png); background-attachment: fixed")
 
         """
         for i in range(0,15):
@@ -2228,14 +2144,14 @@ class ZeroScreen(QWidget):
         # Set Up Label
         self.setUp = QLabel("Transducer Set Up");
         self.setUp.setStyleSheet('background: transparent; color: gold')
-        self.setUp.setFont(QFont("Arial", 75));
+        self.setUp.setFont(QFont("Futura", 75));
         self.setUp.setAlignment(Qt.AlignCenter)
         self.grid.addWidget(self.setUp, 0, 0, 2, 15);
 
 
         self.zeroPrompt = QLabel('Zero both the Patient Monitor and the IFlux \n at the Same time')
         self.zeroPrompt.setAlignment(Qt.AlignCenter)
-        self.zeroPrompt.setFont(QFont("Arial", 50))
+        self.zeroPrompt.setFont(QFont("Futura", 50))
         self.zeroPrompt.setStyleSheet('background: transparent; color: gold')
         self.grid.addWidget(self.zeroPrompt,  2,0,2,15)
     
@@ -2244,7 +2160,7 @@ class ZeroScreen(QWidget):
         # Zeroing Button
 
         self.ZeroingButton = QPushButton("Zero");
-        self.ZeroingButton.setFont(QFont("Arial", 60));
+        self.ZeroingButton.setFont(QFont("Futura", 60));
         self.ZeroingButton.setStyleSheet('background: transparent; color: gold')
         self.ZeroingButton.clicked.connect(self.Calibration)
         self.grid.addWidget(self.ZeroingButton, 8,6,4,3);
@@ -2266,13 +2182,13 @@ class ZeroScreen(QWidget):
         self.zeroPrompt.hide()
         self.goodLabel = QLabel("Calibration Sucessful!");
         self.goodLabel.setStyleSheet("border: 2px solid black;")
-        self.goodLabel.setFont(QFont("Arial", 50));
+        self.goodLabel.setFont(QFont("Futura", 50));
         self.goodLabel.setAlignment(Qt.AlignCenter)        
         self.grid.addWidget(self.goodLabel,4,0,2,15);
 
         
         self.nextButton = QPushButton('Next')
-        self.nextButton.setFont(QFont("Arial", 75));
+        self.nextButton.setFont(QFont("Futura", 75));
         self.nextButton.clicked.connect(self.toDrainage)
         self.grid.addWidget(self.nextButton, 8,6,4,3);
 
@@ -2305,13 +2221,13 @@ class ZeroSetUp(QWidget):
 
         self.text_field = QPlainTextEdit(self)
         self.text_field.setMinimumSize (1024,600)
-        self.text_field.setStyleSheet("background-image: url(background.png); background-attachment: fixed")
+        self.text_field.setStyleSheet("background-image: url(gray-background.png); background-attachment: fixed")
 
 
         # Set Up Label
         self.setUp = QLabel("Zeroing Screen");
         self.setUp.setStyleSheet('background: transparent; color: gold')
-        self.setUp.setFont(QFont("Arial", 75));
+        self.setUp.setFont(QFont("Futura", 75));
         self.setUp.setAlignment(Qt.AlignCenter)
         self.grid.addWidget(self.setUp, 0, 0, 2, 15);
         
@@ -2319,7 +2235,7 @@ class ZeroSetUp(QWidget):
         # Zero Now or Later Label
 
         self.chooseLabel = QLabel(" Zero Now or Later?  ");
-        self.chooseLabel.setFont(QFont("Arial", 30));
+        self.chooseLabel.setFont(QFont("Futura", 30));
         self.chooseLabel.setAlignment(Qt.AlignCenter)
         self.chooseLabel.setStyleSheet('background: transparent; color: gold')
         self.grid.addWidget(self.chooseLabel,2,6,2,3);
@@ -2327,14 +2243,14 @@ class ZeroSetUp(QWidget):
         # Zero Now Button
         self.ZeroNow = QPushButton("Zero \n Now");
         self.ZeroNow.setStyleSheet('background: transparent; color: gold')
-        self.ZeroNow.setFont(QFont("Arial", 45));
+        self.ZeroNow.setFont(QFont("Futura", 45));
         self.ZeroNow.clicked.connect(self.toCalibrate)
         self.grid.addWidget(self.ZeroNow, 5,3,6,4)
 
 
         # Zero Later Button
         self.ZeroLater = QPushButton(" Zero \n Later");
-        self.ZeroLater.setFont(QFont("Arial", 45));
+        self.ZeroLater.setFont(QFont("Futura", 45));
         self.ZeroLater.setStyleSheet('background: transparent; color: gold')
         self.ZeroLater.clicked.connect(self.toDrainage)
         self.grid.addWidget(self.ZeroLater, 5,8,6,4)
@@ -2342,7 +2258,7 @@ class ZeroSetUp(QWidget):
 
         self.Back = QPushButton("Back \n")
         self.Back.setStyleSheet('background: transparent; color: gold')
-        self.Back.setFont(QFont("Arial", 45));
+        self.Back.setFont(QFont("Futura", 45));
         self.Back.clicked.connect(self.back)
         self.grid.addWidget(self.Back, 13,6,2,3)
         self.setLayout(self.grid)
@@ -2382,14 +2298,14 @@ class EVD(QWidget):
         self.grid = QGridLayout();        
         self.text_field = QPlainTextEdit(self)
         self.text_field.setMinimumSize (1024,600)
-        self.text_field.setStyleSheet("background-image: url(background.png); background-attachment: fixed")
+        self.text_field.setStyleSheet("background-image: url(gray-background.png); background-attachment: fixed")
         
 
         
         # Ask what type of sensor they want
         self.DisplayLabel = QLabel("Select Sensor Type");
         self.DisplayLabel.setStyleSheet('background: transparent; color: gold')
-        self.DisplayLabel.setFont(QFont("Arial", 50))
+        self.DisplayLabel.setFont(QFont("Futura", 50))
 
         self.grid.addWidget(self.DisplayLabel, 2,6,2,3)
         
@@ -2397,20 +2313,20 @@ class EVD(QWidget):
         # Pressure transducer
         self.PressureTransducer = QPushButton("Pressure \n Transducer");
         self.PressureTransducer.setStyleSheet('background: transparent; color: gold') 
-        self.PressureTransducer.setFont(QFont("Arial", 45));
+        self.PressureTransducer.setFont(QFont("Futura", 45));
         self.PressureTransducer.clicked.connect(self.toPressureTransducerZeroing)
         self.grid.addWidget(self.PressureTransducer, 5,3,6,4)
         
         # Strain Gauge
         self.CodmanDevice = QPushButton("Codman \n Device");
         self.CodmanDevice.setStyleSheet('background: transparent; color: gold')
-        self.CodmanDevice.setFont(QFont("Arial", 45));
+        self.CodmanDevice.setFont(QFont("Futura", 45));
         self.CodmanDevice.clicked.connect(self.toStrainGaugeCalibration)
         self.grid.addWidget(self.CodmanDevice, 5,8,6,4)
 
         self.Back = QPushButton("Back \n")
         self.Back.setStyleSheet('background: transparent; color: gold')
-        self.Back.setFont(QFont("Arial", 45));
+        self.Back.setFont(QFont("Futura", 45));
         self.Back.clicked.connect(self.back)
         self.grid.addWidget(self.Back, 13,6,2,3)
         self.setLayout(self.grid)
@@ -2453,32 +2369,32 @@ class LumbarDrain(QWidget):
         
         self.text_field = QPlainTextEdit(self)
         self.text_field.setMinimumSize (1024,600)
-        self.text_field.setStyleSheet("background-image: url(background.png); background-attachment: fixed")
+        self.text_field.setStyleSheet("background-image: url(gray-background.png); background-attachment: fixed")
 
          
         # Ask what type of sensor they want
         self.DisplayLabel = QLabel("Select Sensor Type");
         self.DisplayLabel.setStyleSheet('background: transparent; color: gold')
-        self.DisplayLabel.setFont(QFont("Arial", 60))
+        self.DisplayLabel.setFont(QFont("Futura", 60))
         self.grid.addWidget(self.DisplayLabel, 2,6,2,3)
 
         # Pressure transducer
         self.PressureTransducer = QPushButton("Pressure \n Transducer");
         self.PressureTransducer.setStyleSheet('background: transparent; color: gold')
-        self.PressureTransducer.setFont(QFont("Arial", 45));
+        self.PressureTransducer.setFont(QFont("Futura", 45));
         self.PressureTransducer.clicked.connect(self.toPressureTransducerZeroing)
         self.grid.addWidget(self.PressureTransducer, 5,3,6,4)
         
         # Strain Gauge
         self.CodmanDevice = QPushButton("Codman \n Device");
         self.CodmanDevice.setStyleSheet('background: transparent; color: gold')
-        self.CodmanDevice.setFont(QFont("Arial", 45));
+        self.CodmanDevice.setFont(QFont("Futura", 45));
         self.CodmanDevice.clicked.connect(self.toStrainGaugeCalibration)
         self.grid.addWidget(self.CodmanDevice, 5,8,6,4)
 
         self.Back = QPushButton("Back \n" )
         self.Back.setStyleSheet('background: transparent; color: gold')
-        self.Back.setFont(QFont("Arial", 45));
+        self.Back.setFont(QFont("Futura", 45));
         self.Back.clicked.connect(self.back)
         self.grid.addWidget(self.Back, 13,6,2,3)
         self.setLayout(self.grid)
@@ -2520,13 +2436,13 @@ class SetUp(QWidget):
         self.grid = QGridLayout();
 
 
-        self.setStyleSheet("background-image: url(./background.png);")
+        self.setStyleSheet("background-image: url(./gray-background.png);")
 
         
         # Configuration Labe;
         self.DisplayLabel = QLabel("Select Drain Type")
         self.DisplayLabel.setStyleSheet('background: transparent; color: gold')
-        self.DisplayLabel.setFont(QFont("Arial", 60));
+        self.DisplayLabel.setFont(QFont("Futura", 60));
 
 
 
@@ -2536,7 +2452,7 @@ class SetUp(QWidget):
 
         # To EVD Mode   
         self.EVDButton = QPushButton("EVD \n")
-        self.EVDButton.setFont(QFont("Arial", 50))
+        self.EVDButton.setFont(QFont("Futura", 50))
         self.EVDButton.clicked.connect(self.toEVD)
         self.EVDButton.setStyleSheet('background: transparent; color: gold;')
 
@@ -2548,7 +2464,7 @@ class SetUp(QWidget):
         self.LumbarButton = QPushButton("Lumbar \n Drain")
         self.LumbarButton.setStyleSheet('background: transparent; color: gold')
         
-        self.LumbarButton.setFont(QFont("Arial", 55))
+        self.LumbarButton.setFont(QFont("Futura", 55))
         self.LumbarButton.clicked.connect(self.toLumbar)
         self.grid.addWidget(self.LumbarButton, 5,8,6,4)
 
@@ -2591,7 +2507,7 @@ class MainWindow(QMainWindow):
         self.setFixedHeight(600);
         w = SetUp();
 
-        self.setStyleSheet("background-image: url(./background.png);")
+        self.setStyleSheet("background-image: url(./gray-background.png);")
         self.setCentralWidget(w);
 
 
